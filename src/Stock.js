@@ -1,5 +1,8 @@
 import React from 'react';
-//import Plot from 'react-plotly.js';
+import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
+import 'react-vis/dist/style.css';
+
+
 
 class Stock extends React.Component {
 
@@ -31,39 +34,51 @@ class Stock extends React.Component {
             )
             .then(
                 function (data) {
-                    console.log(data);
+                    
 
                     for (var key in data['Time Series (Daily)']) {
                         stockChartXValuesFunction.push(key);
-                        stockChartYValuesFunction.push(data['Time Series (Daily)']
-                        [key]['1. open']);
+                        stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['1. open']);
                     }
 
                     pointerToThis.setState({
                         stockChartXValues: stockChartXValuesFunction,
                         stockChartYValues: stockChartYValuesFunction
-                    });
+                      });
+            
                 }
             )
     }
 
     render() {
+
+        console.log(this.state.stockChartXValues);
+        console.log(this.state.stockChartYValues);
+
+        const dataArr = this.state.stockChartXValues.map((date)=> {
+            
+            const i=0;
+            i++;
+            return {x: i, 
+            y: this.state.stockChartXValues[0]}
+        });
+        
+
         return (
             <div>
                 <h1>Stock Market</h1>
-                {/* <Plot
-                    data={[
-                        {
-                            x: [1, 2, 3],
-                            y: [2, 6, 3],
-                            type: 'scatter',
-                            mode: 'lines+markers',
-                            marker: { color: 'red' },
-                        },
-                        { type: 'bar', x: [1, 2, 3], y: [2, 5, 3] },
-                    ]}
-                    layout={{ width: 320, height: 240, title: 'A Fancy Plot' }}
-                /> */}
+                <XYPlot
+                    
+                    width={1000}
+                    height={500}>
+                    <HorizontalGridLines />
+                    <VerticalGridLines />
+                    <LineSeries
+                        data={dataArr} 
+                        style={{stroke: 'violet', strokeWidth: 3}}/>
+                    <XAxis title="Day" />
+                    <YAxis title="Price" style={{ fill: 'red' }}/>
+                </XYPlot>
             </div>
         )
     }
