@@ -34,7 +34,7 @@ class Stock extends React.Component {
             )
             .then(
                 function (data) {
-                    
+
 
                     for (var key in data['Time Series (Daily)']) {
                         stockChartXValuesFunction.push(key);
@@ -44,8 +44,8 @@ class Stock extends React.Component {
                     pointerToThis.setState({
                         stockChartXValues: stockChartXValuesFunction,
                         stockChartYValues: stockChartYValuesFunction
-                      });
-            
+                    });
+
                 }
             )
     }
@@ -55,29 +55,30 @@ class Stock extends React.Component {
         console.log(this.state.stockChartXValues);
         console.log(this.state.stockChartYValues);
 
-        const dataArr = this.state.stockChartXValues.map((date)=> {
-            
-            const i=0;
-            i++;
-            return {x: i, 
-            y: this.state.stockChartXValues[0]}
-        });
-        
+
+
+        var keys = ['foo', 'bar', 'baz'];
+      
+
+        var dataArr = {};
+        keys.forEach((key, i) => dataArr[key] = this.state.stockChartYValues[i]);
+        console.log(dataArr);
+
 
         return (
             <div>
                 <h1>Stock Market</h1>
                 <XYPlot
-                    
+
                     width={1000}
                     height={500}>
                     <HorizontalGridLines />
                     <VerticalGridLines />
                     <LineSeries
-                        data={dataArr} 
-                        style={{stroke: 'violet', strokeWidth: 3}}/>
+                        data={dataArr}
+                        style={{ stroke: 'violet', strokeWidth: 3 }} />
                     <XAxis title="Day" />
-                    <YAxis title="Price" style={{ fill: 'red' }}/>
+                    <YAxis title="Price" style={{ fill: 'red' }} />
                 </XYPlot>
             </div>
         )
