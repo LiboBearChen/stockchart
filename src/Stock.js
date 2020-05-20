@@ -11,6 +11,7 @@ class Stock extends React.Component {
         this.state = {
             stockChartXValues: [],
             stockChartYValues: []
+
         }
     }
 
@@ -56,31 +57,38 @@ class Stock extends React.Component {
         console.log(this.state.stockChartYValues);
 
 
-
-        var dataArr = [
-            { x: 1, y: 12 },
-            { x: 2, y: 21 },
-            { x: 3, y: 2 },
-            { x: 4, y: 12 },
-            { x: 5, y: 21 },
-            { x: 6, y: 2 },
-            { x: 7, y: 12 },
-            { x: 8, y: 21 },
-            { x: 9, y: 2 }
-        ];
+        var dataObj = {
+            x: 0,
+            y: 0
+        };
 
 
-        /* var dataArr = {};
-        keys.forEach((key, i) => dataArr[key] = this.state.stockChartYValues[i]);
+        var dataArr = [];
 
-        console.log(dataArr); */
+
+        /* this.state.stockChartYValues.forEach(makeDataArr);
+
+        function makeDataArr(value, index, array) {
+            dataObj.x = index;
+            dataObj.y = parseFloat(value);
+            dataArr.push(dataObj);
+            console.log(dataArr.length);
+        } */
+
+        for(var i=0; i<this.state.stockChartYValues.length; i++)
+        {
+            dataObj.x = i;
+            dataObj.y = parseFloat(this.state.stockChartYValues[i]);
+            dataArr.push(dataObj);
+        }
+
+        console.log(dataArr);
 
 
         return (
             <div>
                 <h1>Stock Market</h1>
                 <XYPlot
-
                     width={1000}
                     height={500}>
                     <HorizontalGridLines />
