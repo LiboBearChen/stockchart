@@ -57,12 +57,23 @@ class Stock extends React.Component {
 
 
 
-        var keys = ['foo', 'bar', 'baz'];
-      
+        var dataArr = [
+            { x: 1, y: 12 },
+            { x: 2, y: 21 },
+            { x: 3, y: 2 },
+            { x: 4, y: 12 },
+            { x: 5, y: 21 },
+            { x: 6, y: 2 },
+            { x: 7, y: 12 },
+            { x: 8, y: 21 },
+            { x: 9, y: 2 }
+        ];
 
-        var dataArr = {};
+
+        /* var dataArr = {};
         keys.forEach((key, i) => dataArr[key] = this.state.stockChartYValues[i]);
-        console.log(dataArr);
+
+        console.log(dataArr); */
 
 
         return (
