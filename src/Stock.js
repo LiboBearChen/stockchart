@@ -10,20 +10,21 @@ class Stock extends React.Component {
         super(props);
         this.state = {
             stockChartXValues: [],
-            stockChartYValues: []
-
+            stockChartYValues: [],
+            
+            
         }
     }
 
     componentDidMount() {
         this.fetchStock();
+        
     }
 
     fetchStock() {
         const pointerToThis = this;
-        console.log(pointerToThis);
         const API_KEY = 'CX5XG0YFCZFJ41K0';
-        let StockSymbol = 'AMZN';
+        let StockSymbol = 'WMT';
         let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbol}&outputsize=compact&apikey=${API_KEY}`;
         let stockChartXValuesFunction = [];
         let stockChartYValuesFunction = [];
@@ -51,13 +52,31 @@ class Stock extends React.Component {
             )
     }
 
+    makeDataArr() {
+        var tempArr = [];
+        
+        for (var i = 0; i < this.state.stockChartYValues.length; i++) {
+
+            var dataObj={};
+
+            dataObj.x = i;
+            dataObj.y = parseFloat(this.state.stockChartYValues[i]);
+
+            tempArr.push(dataObj);
+        }
+
+        return tempArr;
+    }
+
+
     render() {
 
-        console.log(this.state.stockChartXValues);
-        console.log(this.state.stockChartYValues);
 
 
-        var dataObj = {
+        var dataArr=this.makeDataArr();
+        
+
+        /* var dataObj = {
             x: 0,
             y: 0
         };
@@ -66,14 +85,14 @@ class Stock extends React.Component {
         var dataArr = [];
 
 
-        /* this.state.stockChartYValues.forEach(makeDataArr);
+        this.state.stockChartYValues.forEach(makeDataArr);
 
         function makeDataArr(value, index, array) {
             dataObj.x = index;
             dataObj.y = parseFloat(value);
             dataArr.push(dataObj);
             console.log(dataArr.length);
-        } */
+        }
 
         for(var i=0; i<this.state.stockChartYValues.length; i++)
         {
@@ -82,7 +101,7 @@ class Stock extends React.Component {
             dataArr.push(dataObj);
         }
 
-        console.log(dataArr);
+        console.log(dataArr); */
 
 
         return (
