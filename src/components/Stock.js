@@ -17,15 +17,21 @@ class Stock extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchStock();
+
+        this.fetchStock(this.props.symbol1);
+        console.log(this.props.symbol1);
         
     }
 
-    fetchStock() {
+    addLine(){
+
+    }
+
+    fetchStock(stockSymbol) {
         const pointerToThis = this;
         const API_KEY = 'CX5XG0YFCZFJ41K0';
-        let StockSymbol = 'WMT';
-        let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbol}&outputsize=compact&apikey=${API_KEY}`;
+        
+        let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockSymbol}&outputsize=compact&apikey=${API_KEY}`;
         let stockChartXValuesFunction = [];
         let stockChartYValuesFunction = [];
         fetch(API_Call)
@@ -73,48 +79,25 @@ class Stock extends React.Component {
 
 
 
-        var dataArr=this.makeDataArr();
-        
-
-        /* var dataObj = {
-            x: 0,
-            y: 0
-        };
-
-
-        var dataArr = [];
-
-
-        this.state.stockChartYValues.forEach(makeDataArr);
-
-        function makeDataArr(value, index, array) {
-            dataObj.x = index;
-            dataObj.y = parseFloat(value);
-            dataArr.push(dataObj);
-            console.log(dataArr.length);
-        }
-
-        for(var i=0; i<this.state.stockChartYValues.length; i++)
-        {
-            dataObj.x = i;
-            dataObj.y = parseFloat(this.state.stockChartYValues[i]);
-            dataArr.push(dataObj);
-        }
-
-        console.log(dataArr); */
+        var dataArr1=this.makeDataArr();
+        /* var dataArr2=this.makeDataArr(); */
 
 
         return (
             <div>
-                <h1>Stock Market</h1>
+                <h1>Stock Market Chart</h1>
                 <XYPlot
                     width={1000}
                     height={500}>
                     <HorizontalGridLines />
                     <VerticalGridLines />
                     <LineSeries
-                        data={dataArr}
+                        data={dataArr1}
                         style={{ stroke: 'violet', strokeWidth: 3 }} />
+                   {/*  <LineSeries
+                        data={[dataArr2]}
+                        style={{ stroke: 'red', strokeWidth: 3 }} /> */}
+                    
                     <XAxis title="Day" />
                     <YAxis title="Price" style={{ fill: 'red' }} />
                 </XYPlot>
