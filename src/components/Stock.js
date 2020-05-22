@@ -4,33 +4,37 @@ import 'react-vis/dist/style.css';
 
 
 
+
 class Stock extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             stockChartXValues: [],
             stockChartYValues: [],
-            
-            
+
+
         }
     }
 
     componentDidMount() {
 
         this.fetchStock(this.props.symbol1);
-        console.log(this.props.symbol1);
         
+
+        /* this.fetchStock(this.props.symbol2);
+        this.setState({dataArr2:this.makeDataArr()}); */
+
     }
 
-    addLine(){
+    addLine() {
 
     }
 
     fetchStock(stockSymbol) {
         const pointerToThis = this;
         const API_KEY = 'CX5XG0YFCZFJ41K0';
-        
+
         let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockSymbol}&outputsize=compact&apikey=${API_KEY}`;
         let stockChartXValuesFunction = [];
         let stockChartYValuesFunction = [];
@@ -60,10 +64,10 @@ class Stock extends React.Component {
 
     makeDataArr() {
         var tempArr = [];
-        
+
         for (var i = 0; i < this.state.stockChartYValues.length; i++) {
 
-            var dataObj={};
+            var dataObj = {};
 
             dataObj.x = i;
             dataObj.y = parseFloat(this.state.stockChartYValues[i]);
@@ -76,12 +80,7 @@ class Stock extends React.Component {
 
 
     render() {
-
-
-
         var dataArr1=this.makeDataArr();
-        /* var dataArr2=this.makeDataArr(); */
-
 
         return (
             <div>
@@ -94,10 +93,10 @@ class Stock extends React.Component {
                     <LineSeries
                         data={dataArr1}
                         style={{ stroke: 'violet', strokeWidth: 3 }} />
-                   {/*  <LineSeries
-                        data={[dataArr2]}
+                    {/*  <LineSeries
+                        data={[this.state.dataArr2]}
                         style={{ stroke: 'red', strokeWidth: 3 }} /> */}
-                    
+
                     <XAxis title="Day" />
                     <YAxis title="Price" style={{ fill: 'red' }} />
                 </XYPlot>
