@@ -1,50 +1,44 @@
-import React from 'react';
+export const fetchDailyData = async (stockSymbol) => {
 
-class FetchAPI extends React.Component {
+    const API_KEY = 'CX5XG0YFCZFJ41K0';
 
-    fetchStock(stockSymbol) {
+    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockSymbol}&outputsize=compact&apikey=${API_KEY}`;
+    let stockChartXValues = [];
+    let stockChartYValues = [];
+    let tempArr = [];
 
-        
-        const API_KEY = 'CX5XG0YFCZFJ41K0';
+    try {
 
-        let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockSymbol}&outputsize=compact&apikey=${API_KEY}`;
-        let stockChartXValuesFunction = [];
-        let stockChartYValuesFunction = [];
-        fetch(API_Call)
-            .then(
-                function (response) {
-                    return response.json();
-                }
-            )
-            .then(
-                function (data) {
+        var response = await fetch(API_Call);
+
+        var data = await response.json();
+        console.log(data);
+
+        for (var key in data['Time Series (Daily)']) {
+            stockChartXValues.push(key);
+            stockChartYValues.push(data['Time Series (Daily)'][key]['1. open']);
+        }
 
 
-                    for (var key in data['Time Series (Daily)']) {
-                        stockChartXValuesFunction.push(key);
-                        stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['1. open']);
-                    }
-                }
-            )
-            
-            
-        var tempArr = [];
 
-        for (var i = 0; i < stockChartYValuesFunction.length; i++) {
+        for (var i = 0; i < stockChartYValues.length; i++) {
 
             var dataObj = {};
 
             dataObj.x = i;
-            dataObj.y = parseFloat(stockChartYValuesFunction[i]);
+            dataObj.y = parseFloat(stockChartYValues[i]);
 
             tempArr.push(dataObj);
-            console.log(tempArr);
+
         }
 
-        console.log(tempArr);
+
         return tempArr;
-     
+    } catch (error) {
+
+        console.log(error);
+
     }
+
 }
 
-export default FetchAPI;
