@@ -10,7 +10,9 @@ class Stock extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataArr1: []
+            dataArr1: [],
+            dataArr2: [],
+            dataArr3: []
         };
     }
 
@@ -20,14 +22,14 @@ class Stock extends React.Component {
         let tempArr = await fetchDailyData(symbol);
         this.setState({ dataArr1: tempArr });
 
-        /* this.fetchStock(this.props.symbol2);
-        this.setState({dataArr2:this.makeDataArr()}); */
+
 
     }
 
 
 
     render() {
+        const {dataArr1, dataArr2, dataArr3}=this.state;
 
         return (
             <div>
@@ -38,11 +40,14 @@ class Stock extends React.Component {
                     <HorizontalGridLines />
                     <VerticalGridLines />
                     <LineSeries
-                        data={this.state.dataArr1}
-                        style={{ stroke: 'violet', strokeWidth: 3 }} />
-                    {/*  <LineSeries
-                        data={[this.state.dataArr2]}
-                        style={{ stroke: 'red', strokeWidth: 3 }} /> */}
+                        data={dataArr1}
+                        style={{ stroke: 'green', strokeWidth: 3 }} />
+                     <LineSeries
+                        data={dataArr2}
+                        style={{ stroke: 'red', strokeWidth: 3 }} />
+                    <LineSeries
+                        data={dataArr3}
+                        style={{ stroke: 'blue', strokeWidth: 3 }} />
 
                     <XAxis title="Day" />
                     <YAxis title="Price" style={{ fill: 'red' }} />
