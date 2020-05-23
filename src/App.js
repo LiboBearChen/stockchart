@@ -7,8 +7,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stockSymbol1: "WMT",
-      stockSymbol2: "AMZN",
+      stockSymbolArr: ["AAPL","FB","MSFT"],
       stocksData: {}
     };
   }
@@ -16,7 +15,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Stock symbol1={this.state.stockSymbol1} symbol2={this.state.stockSymbol2}/>
+        <Stock stockSymbolArr={this.state.stockSymbolArr} />
       </div>
     );
   }

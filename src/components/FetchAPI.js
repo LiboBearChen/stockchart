@@ -12,7 +12,7 @@ export const fetchDailyData = async (stockSymbol) => {
         var response = await fetch(API_Call);
 
         var data = await response.json();
-        console.log(data);
+        
 
         for (var key in data['Time Series (Daily)']) {
             stockChartXValues.push(key);
