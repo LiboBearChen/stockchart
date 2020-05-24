@@ -1,4 +1,4 @@
-export const fetchDailyData = async (stockSymbol,chartKind) => {
+export const fetchDailyData = async (stockSymbol) => {
 
     const API_KEY = 'CX5XG0YFCZFJ41K0';
 
@@ -26,35 +26,12 @@ export const fetchDailyData = async (stockSymbol,chartKind) => {
             stockChartYValues.push(y);
         }
 
+        returnedArr.push(stockChartXValues);
+        returnedArr.push(stockChartYValues);
 
 
-
-        //data for normal chart
-        if(chartKind===1){
-            for (let i = 0; i < stockChartYValues.length; i++) {
-
-                var dataObj = {};
-                
-                dataObj.x = i;
-                dataObj.y = stockChartYValues[stockChartYValues.length-1-i];
-    
-                returnedArr.push(dataObj);       
-            }
-        }
-        else if(chartKind===2){
-            for (let i = 0; i < 30; i++) {
-
-                var dataObj = {};
-                
-                dataObj.x = i;
-                dataObj.y = stockChartYValues[stockChartYValues.length-1-i];
-                console.log(stockChartXValues[i]);
-                returnedArr.push(dataObj);       
-            }
-        }
         
-
-      
+        
         return returnedArr;
     } catch (error) {
 

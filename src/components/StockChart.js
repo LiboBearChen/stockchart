@@ -2,10 +2,11 @@ import React from 'react';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
 import { fetchDailyData } from './FetchAPI';
+import {makeNormalChart} from './DataAnalyseTools';
 
 
 
-class Stock extends React.Component {
+class StockChart extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,14 +16,14 @@ class Stock extends React.Component {
     }
 
 
-    async  addAllLines() {
+    async  getAllData() {
         let tempArr = [];
 
         for (var i = 0; i < this.props.stockSymbolArr.length; i++) {
 
-            let chartKind=this.props.chartKind;
+            
             let stockSymbol = this.props.stockSymbolArr[i];
-            let tempArrElement = await fetchDailyData(stockSymbol, chartKind);
+            let tempArrElement = await fetchDailyData(stockSymbol);
             tempArr.push(tempArrElement);
         }
 
@@ -30,15 +31,16 @@ class Stock extends React.Component {
     }
 
     async componentDidMount() {
-        await this.addAllLines();
+        await this.getAllData();
     }
 
 
 
     render() {
-        const { dataArr } = this.state;
+        let finalDataDrr=makeNormalChart(this.state.dataArr, this.props.chartDays);
 
-
+        console.log(this.state.dataArr);
+        console.log(finalDataDrr);
         return (
             <div>
                 <h1>Stock Market Chart</h1>
@@ -48,13 +50,13 @@ class Stock extends React.Component {
                     <HorizontalGridLines />
                     <VerticalGridLines />
                     <LineSeries
-                        data={dataArr[0]}
+                        data={finalDataDrr[0]}
                         style={{ stroke: 'green', strokeWidth: 3 }} />
                     <LineSeries
-                        data={dataArr[1]}
+                        data={finalDataDrr[1]}
                         style={{ stroke: 'red', strokeWidth: 3 }} />
                     <LineSeries
-                        data={dataArr[2]}
+                        data={finalDataDrr[2]}
                         style={{ stroke: 'blue', strokeWidth: 3 }} />
 
                     <XAxis title="Day" />
@@ -65,4 +67,4 @@ class Stock extends React.Component {
     }
 }
 
-export default Stock;
+export default StockChart;

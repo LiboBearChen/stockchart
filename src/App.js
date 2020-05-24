@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Stock from "./components/Stock";
+import StockChart from "./components/StockChart";
 import './App.css';
 
 export default class App extends Component {
@@ -8,14 +8,14 @@ export default class App extends Component {
     super(props);
     this.state = {
       stockSymbolArr: ["AAPL","FB","MSFT"],
-      chartKind:1
+      chartDays:100
     };
   }
 
   render() {
     return (
       <div className="App">
-        <Stock stockSymbolArr={this.state.stockSymbolArr} chartKind={this.state.chartKind}/>
+        <StockChart stockSymbolArr={this.state.stockSymbolArr} chartDays={this.state.chartDays}/>
       </div>
     );
   }
