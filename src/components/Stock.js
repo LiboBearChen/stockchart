@@ -20,8 +20,9 @@ class Stock extends React.Component {
 
         for (var i = 0; i < this.props.stockSymbolArr.length; i++) {
 
+            let chartKind=this.props.chartKind;
             let stockSymbol = this.props.stockSymbolArr[i];
-            let tempArrElement = await fetchDailyData(stockSymbol);
+            let tempArrElement = await fetchDailyData(stockSymbol, chartKind);
             tempArr.push(tempArrElement);
         }
 

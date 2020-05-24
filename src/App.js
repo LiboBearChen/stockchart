@@ -8,14 +8,14 @@ export default class App extends Component {
     super(props);
     this.state = {
       stockSymbolArr: ["AAPL","FB","MSFT"],
-      stocksData: {}
+      chartKind:2
     };
   }
 
   render() {
     return (
       <div className="App">
-        <Stock stockSymbolArr={this.state.stockSymbolArr} />
+        <Stock stockSymbolArr={this.state.stockSymbolArr} chartKind={this.state.chartKind}/>
       </div>
     );
   }
