@@ -8,7 +8,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       stockSymbolArr: ["AAPL","FB","MSFT"],
-      chartKind:2
+      chartKind:1
     };
   }
 
