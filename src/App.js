@@ -13,11 +13,17 @@ export default class App extends Component {
     };
   }
 
+  handleSymbolChange=(symbol)=>{
+    let arr=[];
+    arr.push(symbol);
+    this.setState({stockSymbolArr:arr});
+}
+
   render() {
     return (
       <div className="App">
         <StockChart stockSymbolArr={this.state.stockSymbolArr} chartDays={this.state.chartDays}/>
-        <SymbolPicker stockSymbolArr={this.state.stockSymbolArr}/>
+        <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange}/>
       </div>
     );
   }
