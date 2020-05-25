@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StockChart from "./components/StockChart";
+import SymbolPicker from "./components/SymbolPicker";
 import './App.css';
 
 export default class App extends Component {
@@ -16,6 +17,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <StockChart stockSymbolArr={this.state.stockSymbolArr} chartDays={this.state.chartDays}/>
+        <SymbolPicker stockSymbolArr={this.state.stockSymbolArr}/>
       </div>
     );
   }
