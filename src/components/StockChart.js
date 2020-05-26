@@ -37,9 +37,10 @@ class StockChart extends React.Component {
 
 
     render() {
-        let singelData=makeNormalChart(this.state.dataArr, this.props.chartDays, this.props.key);
+        let singelData=makeNormalChart(this.state.dataArr, this.props.chartDays);
 
-        console.log(singelData);
+        let chosenStock=this.props.selectedSymbolKey
+        
         return (
             <div>
                 <h1>Stock Market Chart</h1>
@@ -49,7 +50,7 @@ class StockChart extends React.Component {
                     <HorizontalGridLines />
                     <VerticalGridLines />
                     <LineSeries
-                        data={singelData}
+                        data={singelData[chosenStock]}
                         style={{ stroke: 'green', strokeWidth: 3 }} />
 {/*                     <LineSeries
                         data={finalDataDrr[1]}

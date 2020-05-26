@@ -7,8 +7,8 @@ class SymbolPicker extends React.Component {
     render() {
         return (
             <FormControl >
-                <NativeSelect defaultValue="FB" onChange={(e)=>this.props.handleSymbolChange(e.target.key)}>
-                    {this.props.stockSymbolArr.map((symbol, i) => <option key={i} value={symbol}>{symbol}</option>)}
+                <NativeSelect onChange={(e)=>this.props.handleSymbolChange(e.target.value)}>
+                    {this.props.stockSymbolArr.map((symbol, i) => <option key={i} value={i}>{symbol}</option>)}
                 </NativeSelect>
             </FormControl>
         )

@@ -9,19 +9,20 @@ export default class App extends Component {
     super(props);
     this.state = {
       stockSymbolArr: ["AAPL","FB","MSFT"],
-      selectedSymbol: "",
+      selectedSymbolKey: 0,
       chartDays:100
     };
   }
 
-  handleSymbolChange=(symbol)=>{
-    this.setState({selectedSymbol:symbol});
+  handleSymbolChange=(key)=>{
+    console.log(key);
+    this.setState({selectedSymbolKey:key});
 }
 
   render() {
     return (
       <div className="App">
-        <StockChart stockSymbolArr={this.state.stockSymbolArr} selectedSymbol={this.state.selectedSymbol} chartDays={this.state.chartDays}/>
+        <StockChart stockSymbolArr={this.state.stockSymbolArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays}/>
         <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange}/>
       </div>
     );
