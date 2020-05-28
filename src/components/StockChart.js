@@ -7,33 +7,6 @@ import {makeNormalChart} from './DataAnalyseTools';
 
 class StockChart extends React.Component {
 
-    /* constructor(props) {
-        super(props);
-        this.state = {
-            dataArr: []
-        };
-    }
-
-
-    async  getAllData() {
-        let tempArr = [];
-
-        for (var i = 0; i < this.props.stockSymbolArr.length; i++) {
-
-            
-            let stockSymbol = this.props.stockSymbolArr[i];
-            let tempArrElement = await fetchDailyData(stockSymbol);
-            tempArr.push(tempArrElement);
-        }
-
-        this.setState({ dataArr: tempArr });
-    }
-
-    async componentDidMount() {
-        await this.getAllData();
-    } */
-
-
 
     render() {
         let singelData=makeNormalChart(this.props.dataArr, this.props.chartDays);

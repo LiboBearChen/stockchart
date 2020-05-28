@@ -22,6 +22,7 @@ export default class App extends Component {
   }
 
 
+  //fetch all data for all stocks from API
   async  getAllData() {
     let tempArr = [];
 
@@ -60,7 +61,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} />
-        <AnalyseChart analyseKey={this.state.analyseKey} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} />
+        <AnalyseChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} analyseKey={this.state.analyseKey}/>
         <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
         <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol1Change} />
         <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol2Change} />
