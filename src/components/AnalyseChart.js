@@ -7,7 +7,7 @@ import {makeNormalChart} from './DataAnalyseTools';
 
 class StockChart extends React.Component {
 
-    /* constructor(props) {
+   /*  constructor(props) {
         super(props);
         this.state = {
             dataArr: []
@@ -36,28 +36,21 @@ class StockChart extends React.Component {
 
 
     render() {
-        let singelData=makeNormalChart(this.props.dataArr, this.props.chartDays);
+        /* let singelData=makeNormalChart(this.state.dataArr, this.props.chartDays);
 
-        let chosenStock=this.props.selectedSymbolKey
+        let chosenStock=this.props.selectedSymbolKey */
         
         return (
             <div>
-                <h1>Stock Market Chart</h1>
+                <h1>Analysis Chart</h1>
                 <XYPlot
                     width={1000}
                     height={500}>
                     <HorizontalGridLines />
                     <VerticalGridLines />
-                    <LineSeries
+                    {/* <LineSeries
                         data={singelData[chosenStock]}
-                        style={{ stroke: 'green', strokeWidth: 3 }} />
-{/*                     <LineSeries
-                        data={finalDataDrr[1]}
-                        style={{ stroke: 'red', strokeWidth: 3 }} />
-                    <LineSeries
-                        data={finalDataDrr[2]}
-                        style={{ stroke: 'blue', strokeWidth: 3 }} />
- */}
+                        style={{ stroke: 'green', strokeWidth: 3 }} /> */}
                     <XAxis title="Day" />
                     <YAxis title="Price" style={{ fill: 'red' }} />
                 </XYPlot>
