@@ -11,11 +11,13 @@ class StockChart extends React.Component {
         let singelData=[];
         if(this.props.analyseKey===0){
             singelData=makeDiffChart(this.props.dataArr, this.props.chartDays);
+            console.log("11111111");
         }
-        else if(this.props.analyseKey===1){
+        else (this.props.analyseKey===1){
             singelData=makePercenChart(this.props.dataArr, this.props.chartDays);
+            console.log("2222222");
         }
-        
+        console.log(this.props.analyseKey);
         let chosenStock=this.props.selectedSymbolKey;
         
         return (
