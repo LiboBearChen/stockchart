@@ -12,7 +12,7 @@ class StockChart extends React.Component {
         let singelData=makeNormalChart(this.props.dataArr, this.props.chartDays);
 
         let chosenStock=this.props.selectedSymbolKey
-        
+        console.log(singelData);
         return (
             <div>
                 <h1>Stock Market Chart</h1>
