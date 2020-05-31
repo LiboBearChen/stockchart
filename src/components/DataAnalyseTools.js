@@ -69,6 +69,37 @@ export const makePercenChart = (dataArr, chartDays) => {
     return returnedArr;
 }
 
+//
+export const makeDiffPercenChart = (dataArr, chartDays) => {
+
+    let returnedArr = [];
+
+    for (let m = 0; m < dataArr.length-1; m++) {
+        let tempArr = [];
+        for (let i = 1; i < chartDays; i++) {
+
+            //use makeDiffArr function
+            let yValues1 = makePercenArr(dataArr[m][1]);
+            let yValues2 = makePercenArr(dataArr[m+1][1]);
+            let dataObj = {};
+
+            dataObj.x = i;
+            let num = yValues1[yValues1.length - 1 - i]-yValues2[yValues2.length - 1 - i];
+            if(num<0){
+                dataObj.y=-num; 
+            }
+            else{
+                dataObj.y=num;
+            }
+
+            tempArr.push(dataObj);
+        }
+        returnedArr.push(tempArr);
+    }
+
+    return returnedArr;
+}
+
 //make an array of differences
 const makeDiffArr = (arr) => {
     let returnedArr = [];

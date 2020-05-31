@@ -1,7 +1,7 @@
 import React from 'react';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
-import { makeDiffChart, makePercenChart } from './DataAnalyseTools';
+import { makeDiffChart, makePercenChart,makeDiffPercenChart } from './DataAnalyseTools';
 
 
 
@@ -13,10 +13,15 @@ class StockChart extends React.Component {
         let tempArr = [];
         let analyse0=[];
         let analyse1=[];
+        let analyse2=[];
         analyse0 = makeDiffChart(this.props.dataArr, this.props.chartDays);
         tempArr.push(analyse0);
         analyse1 = makePercenChart(this.props.dataArr, this.props.chartDays);
         tempArr.push(analyse1);
+        analyse2 = makeDiffPercenChart(this.props.dataArr, this.props.chartDays);
+        tempArr.push(analyse2);
+
+        console.log(analyse2);
 
         let chosenStock = this.props.selectedSymbolKey;
         let key=this.props.analyseKey;
