@@ -29,7 +29,7 @@ class StockChart extends React.Component {
 
         return (
             <div>
-                <h1 >Analysis Chart</h1>
+                <h1 style={{textAlign:'center'}}>Analysis Chart</h1>
                 <XYPlot
                     width={1000}
                     height={500}>
