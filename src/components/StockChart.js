@@ -15,7 +15,7 @@ class StockChart extends React.Component {
 
         return (
             <div>
-                <h1>Stock Market Chart</h1>
+                <h1 >Stock Price Chart</h1>
                 <XYPlot
                     width={1000}
                     height={500}>

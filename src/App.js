@@ -4,7 +4,7 @@ import StockChart from "./components/StockChart";
 import SymbolPicker from "./components/SymbolPicker";
 import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
-import './App.css';
+import styles from './App.module.css';
 
 export default class App extends Component {
 
@@ -59,10 +59,10 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} />
-        <AnalyseChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} analyseKey={this.state.analyseKey}/>
+      <div className={styles.container}>
+        <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} className={styles.chart}/>
         <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
+        <AnalyseChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} analyseKey={this.state.analyseKey} className={styles.chart}/>       
         <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol1Change} />
         <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol2Change} />
         <AnalysePicker handleAnalyseChange={this.handleAnalyseChange} />
