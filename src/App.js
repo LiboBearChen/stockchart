@@ -4,6 +4,7 @@ import StockChart from "./components/StockChart";
 import SymbolPicker from "./components/SymbolPicker";
 import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
+import AnalyseTable from "./components/AnalyseTable";
 import styles from './App.module.css';
 
 export default class App extends Component {
@@ -66,6 +67,7 @@ export default class App extends Component {
         <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol1Change} />
         <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol2Change} />
         <AnalysePicker handleAnalyseChange={this.handleAnalyseChange} />
+        <AnalyseTable  />
       </div>
     );
   }
