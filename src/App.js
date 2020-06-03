@@ -67,7 +67,7 @@ export default class App extends Component {
         <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol1Change} />
         <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol2Change} />
         <AnalysePicker handleAnalyseChange={this.handleAnalyseChange} />
-        <AnalyseTable  />
+        <AnalyseTable  selectedSymbolKey={this.state.selectedSymbolKey}/>
       </div>
     );
   }

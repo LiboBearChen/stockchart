@@ -1,35 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class AnalyseTable extends React.Component {
+class AnalyseTable extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            relevance: [
+                { id: 1, symbol1: 'FB', symbol2: 'APPL', index: 90 },
+                { id: 2, symbol1: 'FB', symbol2: 'MSFT', index: 50 },
+                { id: 3, symbol1: 'APPL', symbol2: 'MSFT', index: 20 },
+            ]
+        }
+    }
+
+
+    renderTableData() {
+        return this.state.relevance.map((relevance) => {
+            const { id, symbol1, symbol2, index } = relevance
+            return (
+                <tr key={id}>
+                    <td>{id}</td>
+                    <td>{symbol1}</td>
+                    <td>{symbol2}</td>
+                    <td>{index}</td>
+                </tr>
+            )
+        })
+    }
 
 
     render() {
 
-
         return (
             <div>
                 <h1 style={{ textAlign: 'center' }}>Analysis Table</h1>
-                <table style={{width:'100%'}}>
-                    <tr>
-                        <th style={{ textAlign: 'center' }}>Relation Ranking</th>
-                        <th style={{ textAlign: 'center' }}>Stock Names</th>
-                        <th style={{ textAlign: 'center' }}>Average Index</th>
-                    </tr>
-                    <tr>
-                        <td style={{ textAlign: 'center' }}>1</td>
-                        <td style={{ textAlign: 'center' }}>FB, APPL</td>
-                        <td style={{ textAlign: 'center' }}>90%</td>
-                    </tr>
-                    <tr>
-                        <td style={{ textAlign: 'center' }}>2</td>
-                        <td style={{ textAlign: 'center' }}>FB, MSFT</td>
-                        <td style={{ textAlign: 'center' }}>50%</td>
-                    </tr>
-                    <tr>
-                        <td style={{ textAlign: 'center' }}>3</td>
-                        <td style={{ textAlign: 'center' }}>APPL, MSFT</td>
-                        <td style={{ textAlign: 'center' }}>20%</td>
-                    </tr>
+                <table id='relevance'>
+                    <tbody>
+                        {this.renderTableData()}
+                    </tbody>
                 </table>
             </div>
         )
