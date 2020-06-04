@@ -4,7 +4,7 @@ import StockChart from "./components/StockChart";
 import SymbolPicker from "./components/SymbolPicker";
 import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
-import AnalyseTable from "./components/AnalyseTable";
+import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
 import styles from './App.module.css';
 
 export default class App extends Component {

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import styles from './AnalyseTable.module.css';
 
 class AnalyseTable extends Component {
+
+    
 
     constructor(props) {
         super(props)
@@ -29,13 +32,21 @@ class AnalyseTable extends Component {
     }
 
 
+    renderTableHeader() {
+        let header = Object.keys(this.state.relevance[0])
+        return header.map((key, index) => {
+            return <th key={index}>{key.toUpperCase()}</th>
+        })
+    }
+
     render() {
 
         return (
             <div>
-                <h1 style={{ textAlign: 'center' }}>Analysis Table</h1>
-                <table id='relevance'>
+                <h1 id='title' className={styles.title}>Analysis Table</h1>
+                <table id='relevance' className={styles.relevance}>
                     <tbody>
+                        <tr>{this.renderTableHeader()}</tr>
                         {this.renderTableData()}
                     </tbody>
                 </table>
@@ -45,3 +56,4 @@ class AnalyseTable extends Component {
 }
 
 export default AnalyseTable;
+
