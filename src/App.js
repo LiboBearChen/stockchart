@@ -60,14 +60,22 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className={styles.container}>
-        <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} className={styles.chart}/>
-        <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
-        <AnalyseChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} analyseKey={this.state.analyseKey} className={styles.chart}/>       
-        <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol1Change} />
-        <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol2Change} />
-        <AnalysePicker handleAnalyseChange={this.handleAnalyseChange} />
-        <AnalyseTable  selectedSymbolKey={this.state.selectedSymbolKey}/>
+      <div className={styles.gridContainer}>
+        <div class="styles.gridItem">
+          <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} />
+        </div>
+        <div class="styles.gridItem">
+          <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
+        </div>
+        <div class="styles.gridItem">
+          <AnalyseChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} analyseKey={this.state.analyseKey} />
+        </div>
+        <div class="styles.gridItem">
+          <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol1Change} />
+          <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol2Change} />
+          <AnalysePicker handleAnalyseChange={this.handleAnalyseChange} />
+          <AnalyseTable selectedSymbolKey={this.state.selectedSymbolKey} />
+        </div>
       </div>
     );
   }
