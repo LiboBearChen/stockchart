@@ -140,6 +140,22 @@ const makeAverDiffPercenArr = (dataArr, chartDays) => {
 const makerelevanceArr = (dataArr, chartDays) => {
     let returnedArr = [];
     let tempArr = makeAverDiffPercenArr(dataArr, chartDays);
+
+    //order the makeAverDiffPercenArr by attribute index
+    for (let i = 0; i < tempArr.length; i++){
+        
+    }
+    //make new array to hold ordered data
+    for (let i = 0; i < tempArr.length; i++) {
+        let dataObj = {};
+        dataObj.id=i+1;
+        dataObj.symbol1=tempArr.symbol1;
+        dataObj.symbol2=tempArr.symbol2;
+        dataObj.index=tempArr.index;
+        returnedArr.push(dataObj);
+    }
+
+    return returnedArr;
 }
 
 //make an array of differences
