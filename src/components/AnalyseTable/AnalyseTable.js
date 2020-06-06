@@ -8,7 +8,7 @@ class AnalyseTable extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            relevance: [
+            relevanceArr: [
                 { id: 1, symbol1: 'FB', symbol2: 'APPL', index: 90 },
                 { id: 2, symbol1: 'FB', symbol2: 'MSFT', index: 50 },
                 { id: 3, symbol1: 'APPL', symbol2: 'MSFT', index: 20 },
@@ -18,8 +18,8 @@ class AnalyseTable extends Component {
 
 
     renderTableData() {
-        return this.state.relevance.map((relevance) => {
-            const { id, symbol1, symbol2, index } = relevance
+        return this.state.relevanceArr.map((relevanceArr) => {
+            const { id, symbol1, symbol2, index } = relevanceArr
             return (
                 <tr key={id}>
                     <td>{id}</td>
@@ -33,7 +33,7 @@ class AnalyseTable extends Component {
 
 
     renderTableHeader() {
-        let header = Object.keys(this.state.relevance[0])
+        let header = Object.keys(this.state.relevanceArr[0])
         return header.map((key, index) => {
             return <th key={index}>{key.toUpperCase()}</th>
         })
@@ -44,7 +44,7 @@ class AnalyseTable extends Component {
         return (
             <div>
                 <h1 id='title' className={styles.title}>Analysis Table</h1>
-                <table id='relevance' className={styles.relevance}>
+                <table id='relevance' className={styles.relevanceArr}>
                     <tbody>
                         <tr>{this.renderTableHeader()}</tr>
                         {this.renderTableData()}
