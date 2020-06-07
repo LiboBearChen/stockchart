@@ -137,21 +137,32 @@ const makeAverDiffPercenArr = (dataArr, chartDays) => {
 }
 
 //order the makeAverDiffPercenArr
-const makerelevanceArr = (dataArr, chartDays) => {
+export const makerelevanceArr = (dataArr, chartDays) => {
     let returnedArr = [];
-    let tempArr = makeAverDiffPercenArr(dataArr, chartDays);
-
+    let tempArr1 = makeAverDiffPercenArr(dataArr, chartDays);
+    let tempArr2=[];
+    let numArr=[];
     //order the makeAverDiffPercenArr by attribute index
-    for (let i = 0; i < tempArr.length; i++){
-        
+    for (let i = 0; i < tempArr1.length; i++){
+        numArr.push(tempArr1[i]);
+    }
+    numArr.sort(function(a, b){return a - b});
+    for (let i = 0; i < numArr.length; i++){
+        for (let m = 0; m < tempArr1.length; m++){
+            if(numArr[i]===tempArr1[m].index){
+                tempArr2.push(tempArr1[m]);
+                tempArr1.splice(m,1);
+                break;
+            }
+        }
     }
     //make new array to hold ordered data
-    for (let i = 0; i < tempArr.length; i++) {
+    for (let i = 0; i < tempArr2.length; i++) {
         let dataObj = {};
         dataObj.id=i+1;
-        dataObj.symbol1=tempArr.symbol1;
-        dataObj.symbol2=tempArr.symbol2;
-        dataObj.index=tempArr.index;
+        dataObj.symbol1=tempArr2.symbol1;
+        dataObj.symbol2=tempArr2.symbol2;
+        dataObj.index=tempArr2.index;
         returnedArr.push(dataObj);
     }
 
