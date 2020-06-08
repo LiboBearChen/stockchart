@@ -27,15 +27,11 @@ export default class App extends Component {
   //fetch all data for all stocks from API
   async  getAllData() {
     let tempArr = [];
-
     for (let i = 0; i < this.state.stockSymbolArr.length; i++) {
-
-
       let stockSymbol = this.state.stockSymbolArr[i];
       let tempArrElement = await fetchDailyData(stockSymbol);
       tempArr.push(tempArrElement);
     }
-
     this.setState({ dataArr: tempArr });
   }
 
@@ -60,6 +56,8 @@ export default class App extends Component {
   }
 
   render() {
+    let aa=makerelevanceArr(this.state.dataArr, this.state.chartDays);
+    console.log(aa);
     return (
       <div className={styles.gridContainer}>
         <div class="styles.gridItem">
@@ -75,7 +73,7 @@ export default class App extends Component {
           <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol1Change} />
           <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol2Change} />
           <AnalysePicker handleAnalyseChange={this.handleAnalyseChange} />
-          <AnalyseTable relevanceArr={makerelevanceArr(this.state.dataArr, this.state.chartDays)} />
+          {/* <AnalyseTable relevanceArr={makerelevanceArr(this.state.dataArr, this.state.chartDays)} /> */}
         </div>
       </div>
     );
