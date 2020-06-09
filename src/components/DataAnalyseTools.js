@@ -76,7 +76,7 @@ export const makeDiffPercenChart = (dataArr, chartDays) => {
 
     for (let m = 0; m < dataArr.length - 1; m++) {
         
-        for (let n = 1; m+n < dataArr.length; m++) {
+        for (let n = 1; m+n < dataArr.length; n++) {
             let tempArr = [];
             let yValues1 = makePercenArr(dataArr[m][1]);
             let yValues2 = makePercenArr(dataArr[m + n][1]);
@@ -91,6 +91,8 @@ export const makeDiffPercenChart = (dataArr, chartDays) => {
                 else {
                     dataObj.y = num;
                 }
+                dataObj.symbol1=m;
+                dataObj.symbol2=m+n;
 
                 tempArr.push(dataObj);
             }
@@ -104,33 +106,20 @@ const makeAverDiffPercenArr = (dataArr, chartDays) => {
 
     let returnedArr = [];
     let tempArr=makeDiffPercenChart(dataArr, chartDays);
-    console.log("makeDiffPercenChart"+tempArr);
-    for (let m = 0; m < tempArr.length - 1; m++) {
-        let tempArr = [];
-        for (let n = m + 1; n < dataArr.length; n++) {
-            for (let i = 1; i < chartDays; i++) {
-
-                let yValues1 = makePercenArr(dataArr[m][1]);
-                let yValues2 = makePercenArr(dataArr[n][1]);
-                let dataObj = {};
-
-                dataObj.symbol1 = m;
-                dataObj.symbol2 = m + 1;
-                let num = yValues1[yValues1.length - 1 - i] - yValues2[yValues2.length - 1 - i];
-                if (num < 0) {
-                    dataObj.index = -num / (chartDays - 1);
-                }
-                else {
-                    dataObj.index = num / (chartDays - 1);
-                }
-
-                tempArr.push(dataObj);
-            }
+    
+    for (let m = 0; m < tempArr.length; m++) {
+        let dataObj = {};
+        let num=0;
+        for (let i = 0; i < chartDays-1; i++) {
+            num+=tempArr[m][i].y;
         }
-
-        returnedArr.push(tempArr);
+        dataObj.index=num/(chartDays-1);
+        dataObj.symbol1=tempArr[m][0].symbol1;
+        dataObj.symbol2=tempArr[m][0].symbol2;
+        returnedArr.push(dataObj);
+        console.log(dataObj);
     }
-
+    
     return returnedArr;
 }
 
@@ -138,12 +127,12 @@ const makeAverDiffPercenArr = (dataArr, chartDays) => {
 export const makerelevanceArr = (dataArr, chartDays) => {
     let returnedArr = [];
     let tempArr1 = makeAverDiffPercenArr(dataArr, chartDays);
-    console.log("makeAverDiffPercenArr"+tempArr1);
+    console.log(tempArr1);
     let tempArr2 = [];
     let numArr = [];
     //order the makeAverDiffPercenArr by attribute index
     for (let i = 0; i < tempArr1.length; i++) {
-        numArr.push(tempArr1[i]);
+        numArr.push(tempArr1[i].index);
     }
     numArr.sort(function (a, b) { return a - b });
     for (let i = 0; i < numArr.length; i++) {
