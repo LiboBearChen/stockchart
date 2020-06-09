@@ -76,7 +76,7 @@ export const makeDiffPercenChart = (dataArr, chartDays) => {
 
     for (let m = 0; m < dataArr.length - 1; m++) {
         
-        for (let n = 1; n < dataArr.length; m++) {
+        for (let n = 1; m+n < dataArr.length; m++) {
             let tempArr = [];
             let yValues1 = makePercenArr(dataArr[m][1]);
             let yValues2 = makePercenArr(dataArr[m + n][1]);
@@ -103,8 +103,9 @@ export const makeDiffPercenChart = (dataArr, chartDays) => {
 const makeAverDiffPercenArr = (dataArr, chartDays) => {
 
     let returnedArr = [];
-
-    for (let m = 0; m < dataArr.length - 1; m++) {
+    let tempArr=makeDiffPercenChart(dataArr, chartDays);
+    console.log("makeDiffPercenChart"+tempArr);
+    for (let m = 0; m < tempArr.length - 1; m++) {
         let tempArr = [];
         for (let n = m + 1; n < dataArr.length; n++) {
             for (let i = 1; i < chartDays; i++) {
@@ -137,7 +138,7 @@ const makeAverDiffPercenArr = (dataArr, chartDays) => {
 export const makerelevanceArr = (dataArr, chartDays) => {
     let returnedArr = [];
     let tempArr1 = makeAverDiffPercenArr(dataArr, chartDays);
-    console.log(tempArr1);
+    console.log("makeAverDiffPercenArr"+tempArr1);
     let tempArr2 = [];
     let numArr = [];
     //order the makeAverDiffPercenArr by attribute index
