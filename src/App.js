@@ -60,16 +60,16 @@ export default class App extends Component {
     console.log(aa);
     return (
       <div className={styles.gridContainer}>
-        <div class="styles.gridItem">
+        <div className="styles.gridItem">
           <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} />
         </div>
-        <div class="styles.gridItem">
+        <div className="styles.gridItem">
           <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
         </div>
-        <div class="styles.gridItem">
+        <div className="styles.gridItem">
           <AnalyseChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} analyseKey={this.state.analyseKey} />
         </div>
-        <div class="styles.gridItem">
+        <div className="styles.gridItem">
           <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol1Change} />
           <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol2Change} />
           <AnalysePicker handleAnalyseChange={this.handleAnalyseChange} />

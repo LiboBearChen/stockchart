@@ -104,7 +104,7 @@ export const makeDiffPercenChart = (dataArr, chartDays) => {
 
 const makeAverDiffPercenArr = (dataArr, chartDays) => {
 
-    let returnedArr = [];
+    let returnedArr = [100];
     let tempArr=makeDiffPercenChart(dataArr, chartDays);
     
     for (let m = 0; m < tempArr.length; m++) {
@@ -116,8 +116,8 @@ const makeAverDiffPercenArr = (dataArr, chartDays) => {
         dataObj.index=num/(chartDays-1);
         dataObj.symbol1=tempArr[m][0].symbol1;
         dataObj.symbol2=tempArr[m][0].symbol2;
-        returnedArr.push(dataObj);
-        console.log(dataObj);
+        let a=returnedArr.push(dataObj);
+        console.log(a);
     }
     
     return returnedArr;
