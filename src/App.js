@@ -56,8 +56,8 @@ export default class App extends Component {
   }
 
   render() {
-    let aa=makerelevanceArr(this.state.dataArr, this.state.chartDays);
-    console.log(aa);
+    let tableData=makerelevanceArr(this.state.dataArr, this.state.chartDays);
+
     return (
       <div className={styles.gridContainer}>
         <div className="styles.gridItem">
@@ -73,7 +73,7 @@ export default class App extends Component {
           <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol1Change} />
           <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol2Change} />
           <AnalysePicker handleAnalyseChange={this.handleAnalyseChange} />
-          {/* <AnalyseTable relevanceArr={makerelevanceArr(this.state.dataArr, this.state.chartDays)} /> */}
+          <AnalyseTable relevanceArr={tableData} />
         </div>
       </div>
     );

@@ -93,67 +93,52 @@ export const makeDiffPercenChart = (dataArr, chartDays) => {
                 }
                 dataObj.symbol1=m;
                 dataObj.symbol2=m+n;
-
                 tempArr.push(dataObj);
             }
             returnedArr.push(tempArr);
         }
     }
+    
     return returnedArr;
 }
 
-const makeAverDiffPercenArr = (dataArr, chartDays) => {
+export const makeAverDiffPercenArr = (dataArr, chartDays) => {
 
-    let returnedArr = [100];
+    let returnedArr = [];
     let tempArr=makeDiffPercenChart(dataArr, chartDays);
-    
     for (let m = 0; m < tempArr.length; m++) {
         let dataObj = {};
         let num=0;
         for (let i = 0; i < chartDays-1; i++) {
             num+=tempArr[m][i].y;
         }
-        dataObj.index=num/(chartDays-1);
+        dataObj.averDiffPercen=num/(chartDays-1);
         dataObj.symbol1=tempArr[m][0].symbol1;
         dataObj.symbol2=tempArr[m][0].symbol2;
-        let a=returnedArr.push(dataObj);
-        console.log(a);
+        returnedArr.push(dataObj);
     }
-    
     return returnedArr;
 }
 
 //order the makeAverDiffPercenArr
 export const makerelevanceArr = (dataArr, chartDays) => {
     let returnedArr = [];
-    let tempArr1 = makeAverDiffPercenArr(dataArr, chartDays);
-    console.log(tempArr1);
-    let tempArr2 = [];
+    let tempArr = makeAverDiffPercenArr(dataArr, chartDays);
     let numArr = [];
-    //order the makeAverDiffPercenArr by attribute index
-    for (let i = 0; i < tempArr1.length; i++) {
-        numArr.push(tempArr1[i].index);
+    //order the makeAverDiffPercenArr by attribute averDiffPercen
+    for (let i = 0; i < tempArr.length; i++) {
+        numArr.push(tempArr[i].averDiffPercen);
     }
     numArr.sort(function (a, b) { return a - b });
     for (let i = 0; i < numArr.length; i++) {
-        for (let m = 0; m < tempArr1.length; m++) {
-            if (numArr[i] === tempArr1[m].index) {
-                tempArr2.push(tempArr1[m]);
-                tempArr1.splice(m, 1);
+        for (let m = 0; m < tempArr.length; m++) {
+            if (numArr[i] === tempArr[m].averDiffPercen) {
+                returnedArr.push(tempArr[m]);
+                tempArr.splice(m, 1);
                 break;
             }
         }
     }
-    //make new array to hold ordered data
-    for (let i = 0; i < tempArr2.length; i++) {
-        let dataObj = {};
-        dataObj.id = i + 1;
-        dataObj.symbol1 = tempArr2.symbol1;
-        dataObj.symbol2 = tempArr2.symbol2;
-        dataObj.index = tempArr2.index;
-        returnedArr.push(dataObj);
-    }
-
     return returnedArr;
 }
 
