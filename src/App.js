@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { fetchDailyData } from './components/FetchAPI';
 import StockChart from "./components/StockChart";
 import SymbolPicker from "./components/SymbolPicker";
+import RankingPicker from "./components/RankingPicker";
 import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
@@ -15,9 +16,8 @@ export default class App extends Component {
     this.state = {
       stockSymbolArr: ["AAPL", "FB", "MSFT", "NFLX", "GOOGL"],
       dataArr: [],
+      ranking: 0,
       selectedSymbolKey: 0,
-      comparedSymbolKey1: 0,
-      comparedSymbolKey2: 0,
       analyseKey: 0,
       chartDays: 100
     };
@@ -43,16 +43,12 @@ export default class App extends Component {
     this.setState({ selectedSymbolKey: key });
   }
 
-  /* handleComparedSymbol1Change = (key) => {
-    this.setState({ comparedSymbolKey1: key });
-  }
-
-  handleComparedSymbol2Change = (key) => {
-    this.setState({ comparedSymbolKey2: key });
-  } */
-
   handleAnalyseChange = (key) => {
     this.setState({ analyseKey: key });
+  }
+
+  handleRangkingChange = (key) => {
+    this.setState({ ranking: key });
   }
 
   render() {
@@ -70,8 +66,7 @@ export default class App extends Component {
           <AnalyseChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} analyseKey={this.state.analyseKey} />
         </div>
         <div className="styles.gridItem">
-          <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol1Change} />
-          <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleComparedSymbol2Change} />
+          <RankingPicker rankingArr={tableData} handleRangkingChange={this.handleRangkingChange} />
           <AnalysePicker handleAnalyseChange={this.handleAnalyseChange} />
           <AnalyseTable relevanceArr={tableData} />
         </div>
