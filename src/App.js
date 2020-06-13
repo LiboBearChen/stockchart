@@ -66,9 +66,9 @@ export default class App extends Component {
           <AnalyseChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} analyseKey={this.state.analyseKey} />
         </div>
         <div className="styles.gridItem">
-          <RankingPicker rankingArr={tableData} handleRangkingChange={this.handleRangkingChange} />
+          <RankingPicker rankingArr={tableData} handleRangkingChange={this.handleRangkingChange} stockSymbolArr={this.state.stockSymbolArr}/>
           <AnalysePicker handleAnalyseChange={this.handleAnalyseChange} />
-          <AnalyseTable relevanceArr={tableData} />
+          <AnalyseTable relevanceArr={tableData} stockSymbolArr={this.state.stockSymbolArr}/>
         </div>
       </div>
     );

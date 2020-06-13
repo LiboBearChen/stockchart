@@ -11,12 +11,16 @@ class AnalyseTable extends Component {
             return (
                 <tr>
                     <td>{index+1}</td>
-                    <td>{symbol1}</td>
-                    <td>{symbol2}</td>
+                    <td>{this.checkSymbol(symbol1)}</td>
+                    <td>{this.checkSymbol(symbol2)}</td>
                     <td>{averDiffPercen}</td>
                 </tr>
             )
         })
+    }
+
+    checkSymbol = (key) => {
+        return this.props.stockSymbolArr[key];
     }
 
 
