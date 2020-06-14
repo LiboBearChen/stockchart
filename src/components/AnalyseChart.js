@@ -22,7 +22,8 @@ class StockChart extends React.Component {
         tempArr.push(analyse2);
         let chosenStock = this.props.selectedSymbolKey;
         let key=this.props.analyseKey;
-        let linedata= tempArr[key][chosenStock];
+        let ranking=this.props.ranking;
+        let linedata= tempArr[2][ranking];
 
         return (
             <div>
