@@ -1,16 +1,25 @@
 import React from 'react';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
-import {makeNormalChart} from './DataAnalyseTools';
+import {makeNormalChart, makeDiffChart} from './DataAnalyseTools';
 
 
 
 class StockChart extends React.Component {
 
+    renderLines() {
+        if(this.props.chartChoice===1){
+            return (
+                <LineSeries
+                        data={diffArr[chosenStock]}
+                        style={{ stroke: 'blue', strokeWidth: 3 }} />
+            )
+        }
+    }
 
     render() {
-        let singelData=makeNormalChart(this.props.dataArr, this.props.chartDays);
-
+        let priceArr=makeNormalChart(this.props.dataArr, this.props.chartDays);
+        let diffArr = makeDiffChart(this.props.dataArr, this.props.chartDays);
         let chosenStock=this.props.selectedSymbolKey
 
         return (
@@ -21,16 +30,11 @@ class StockChart extends React.Component {
                     height={500}>
                     <HorizontalGridLines />
                     <VerticalGridLines />
+                    {this.renderLines()}
                     <LineSeries
-                        data={singelData[chosenStock]}
+                        data={priceArr[chosenStock]}
                         style={{ stroke: 'green', strokeWidth: 3 }} />
-{/*                     <LineSeries
-                        data={finalDataDrr[1]}
-                        style={{ stroke: 'red', strokeWidth: 3 }} />
-                    <LineSeries
-                        data={finalDataDrr[2]}
-                        style={{ stroke: 'blue', strokeWidth: 3 }} />
- */}
+                    
                     <XAxis title="Day" />
                     <YAxis title="Price" style={{ fill: 'red' }} />
                 </XYPlot>

@@ -18,7 +18,7 @@ export default class App extends Component {
       dataArr: [],
       ranking: 0,
       selectedSymbolKey: 0,
-      analyseKey: 0,
+      chartChoice: 0,
       chartDays: 100
     };
   }
@@ -43,8 +43,8 @@ export default class App extends Component {
     this.setState({ selectedSymbolKey: key });
   }
 
-  handleAnalyseChange = (key) => {
-    this.setState({ analyseKey: key });
+  handleChartChoiceChange = (key) => {
+    this.setState({ chartChoice: key });
   }
 
   handleRangkingChange = (key) => {
@@ -57,17 +57,17 @@ export default class App extends Component {
     return (
       <div className={styles.gridContainer}>
         <div className="styles.gridItem">
-          <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} />
+          <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} chartChoice={this.state.chartChoice}/>
         </div>
         <div className="styles.gridItem">
           <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
+          <AnalysePicker handleChartChoiceChange={this.handleChartChoiceChange} />
         </div>
         <div className="styles.gridItem">
-          <AnalyseChart ranking={this.state.ranking} dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} analyseKey={this.state.analyseKey} />
+          <AnalyseChart ranking={this.state.ranking} dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} />
         </div>
         <div className="styles.gridItem">
           <RankingPicker rankingArr={tableData} handleRangkingChange={this.handleRangkingChange} stockSymbolArr={this.state.stockSymbolArr}/>
-          <AnalysePicker handleAnalyseChange={this.handleAnalyseChange} />
           <AnalyseTable relevanceArr={tableData} stockSymbolArr={this.state.stockSymbolArr}/>
         </div>
       </div>

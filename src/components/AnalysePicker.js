@@ -8,11 +8,11 @@ class AnalysePicker extends React.Component {
         return (
             
             <FormControl component="fieldset">
-                <FormLabel component="legend">Analysis Options</FormLabel>
-                <RadioGroup defaultValue="0" onChange={(e) => this.props.handleAnalyseChange(e.target.value)}>
-                    <FormControlLabel value="0" control={<Radio />} label="Difference" />
-                    <FormControlLabel value="1" control={<Radio />} label="Percentage" />
-                    <FormControlLabel value="2" control={<Radio />} label="Difference of Percentage" />
+                <FormLabel component="legend">Chart Options</FormLabel>
+                <RadioGroup defaultValue="0" onChange={(e) => this.props.handleChartChoiceChange(e.target.value)}>
+                    <FormControlLabel value="0" control={<Radio />} label="Price" />
+                    <FormControlLabel value="1" control={<Radio />} label="Fluctuation" />
+                    <FormControlLabel value="2" control={<Radio />} label="Both" />
                 </RadioGroup>
             </FormControl>
         )

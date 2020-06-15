@@ -20,8 +20,6 @@ class StockChart extends React.Component {
         tempArr.push(analyse1);
         analyse2 = makeDiffPercenChart(this.props.dataArr, this.props.chartDays);
         tempArr.push(analyse2);
-        let chosenStock = this.props.selectedSymbolKey;
-        let key=this.props.analyseKey;
         let ranking=this.props.ranking;
         let linedata= tempArr[2][ranking];
 
