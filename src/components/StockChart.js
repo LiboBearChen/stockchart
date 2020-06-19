@@ -1,22 +1,24 @@
-import React, {ReactDOM} from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
 import { makeNormalChart, makeDiffChart } from './DataAnalyseTools';
+import App from '../App';
 
 
 
 class StockChart extends React.Component {
 
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
-        this.state = {
-            chartChoice: 0
-        }
+    this.state = {
+      chartChoice: 0
     }
+  }
 
 
-renderPriceArr(priceArr, chosenStock) {
+  renderPriceArr(priceArr, chosenStock) {
     if (this.state.chartChoice === 0) {
       return <LineSeries data={priceArr[chosenStock]} style={{ stroke: 'green', strokeWidth: 3 }} />;
     } else {
@@ -35,35 +37,45 @@ renderPriceArr(priceArr, chosenStock) {
   renderBothArr(priceArr, diffArr, chosenStock) {
     if (this.state.chartChoice === 1) {
       return (<div><LineSeries data={priceArr[chosenStock]} style={{ stroke: 'green', strokeWidth: 3 }} />
-            <LineSeries data={diffArr[chosenStock]} style={{ stroke: 'blue', strokeWidth: 3 }} /></div>);
+        <LineSeries data={diffArr[chosenStock]} style={{ stroke: 'blue', strokeWidth: 3 }} /></div>);
     } else {
       return <div />;
     }
   }
- 
 
-render() {
+
+  render() {
     let priceArr = makeNormalChart(this.props.dataArr, this.props.chartDays);
     let diffArr = makeDiffChart(this.props.dataArr, this.props.chartDays);
     let chosenStock = this.props.selectedSymbolKey;
 
+
+
     return (
-        <div>
-            <h1 style={{ textAlign: 'center' }}>Stock Price Chart</h1>
-            <XYPlot
-                width={1000}
-                height={500}>
-                <HorizontalGridLines />
-                <VerticalGridLines />
-                {this.renderPriceArr()}
-                {this.renderDiffArr()}
-                {this.renderBothArr()}
-                <XAxis title="Day" />
-                <YAxis title="Price" style={{ fill: 'red' }} />
-            </XYPlot>
-        </div>
+      <div>
+        <h1 style={{ textAlign: 'center' }}>Stock Price Chart</h1>
+        <XYPlot
+          width={1000}
+          height={500}>
+          <HorizontalGridLines />
+          <VerticalGridLines />
+          <div id="lines">
+            {this.renderPriceArr(priceArr, chosenStock)}
+            {this.renderDiffArr(diffArr, chosenStock)}
+            {this.renderBothArr(priceArr, diffArr, chosenStock)}
+          </div>
+
+          <XAxis title="Day" />
+          <YAxis title="Price" style={{ fill: 'red' }} />
+        </XYPlot>
+      </div>
     )
+  }
 }
-}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
 
 export default StockChart;

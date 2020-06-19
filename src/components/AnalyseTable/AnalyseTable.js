@@ -9,7 +9,7 @@ class AnalyseTable extends Component {
             const { symbol1, symbol2, averDiffPercen } = relevanceObj
 
             return (
-                <tr>
+                <tr key="index">
                     <td>{index+1}</td>
                     <td>{this.checkSymbol(symbol1)}</td>
                     <td>{this.checkSymbol(symbol2)}</td>
