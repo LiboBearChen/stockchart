@@ -1,11 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
 import { makeNormalChart, makeDiffChart } from './DataAnalyseTools';
-import App from '../App';
-
-
 
 class StockChart extends React.Component {
 
@@ -72,10 +68,5 @@ class StockChart extends React.Component {
     )
   }
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 
 export default StockChart;

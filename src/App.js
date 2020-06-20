@@ -8,6 +8,7 @@ import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
 import {makerelevanceArr} from './components/DataAnalyseTools';
 import styles from './App.module.css';
+import ReactDOM from 'react-dom';
 
 export default class App extends Component {
 
@@ -56,7 +57,7 @@ export default class App extends Component {
 
     return (
       <div className={styles.gridContainer}>
-        <div className="styles.gridItem">
+        <div className="styles.gridItem" id="stockChart">
           <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} chartChoice={this.state.chartChoice}/>
         </div>
         <div className="styles.gridItem">
@@ -75,5 +76,10 @@ export default class App extends Component {
   }
 
 }
+
+ReactDOM.render(
+  <div />,
+  document.getElementById('stockChart')
+);
 
 
