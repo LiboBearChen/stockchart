@@ -57,7 +57,7 @@ export default class App extends Component {
 
     return (
       <div className={styles.gridContainer}>
-        <div className="styles.gridItem" id="stockChart">
+        <div className="styles.gridItem">
           <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} chartChoice={this.state.chartChoice}/>
         </div>
         <div className="styles.gridItem">
@@ -77,9 +77,6 @@ export default class App extends Component {
 
 }
 
-ReactDOM.render(
-  <div />,
-  document.getElementById('stockChart')
-);
+
 
 
