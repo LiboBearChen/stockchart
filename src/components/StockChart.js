@@ -5,23 +5,27 @@ import { makeNormalChart, makeDiffChart } from './DataAnalyseTools';
 
 class StockChart extends React.Component {
 
-  /* renderLines(priceArr, diffArr, chosenStock, chartChoice) {
+   renderLines(priceArr, diffArr, chosenStock, chartChoice) {
     let lines;
-    if (chartChoice === 0) {
+    if (chartChoice === 2) {
       lines = document.createElement('div');
       console.log(chartChoice);
       console.log(lines);
     }
-    else if (chartChoice === 1) {
+    else if (chartChoice === 0) {
       lines = <LineSeries data={diffArr[chosenStock]} style={{ stroke: 'blue', strokeWidth: 3 }} />;
       console.log(chartChoice);
+      console.log(lines);
     }
     else if (chartChoice === 1) {
       lines = <div><LineSeries data={priceArr[chosenStock]} style={{ stroke: 'green', strokeWidth: 3 }} />
         <LineSeries data={diffArr[chosenStock]} style={{ stroke: 'blue', strokeWidth: 3 }} /></div>;
+        console.log(chartChoice);
+        console.log(lines);
     }
 
-  } */
+    return lines;
+  }
 
   render() {
     let priceArr = makeNormalChart(this.props.dataArr, this.props.chartDays);
@@ -29,11 +33,8 @@ class StockChart extends React.Component {
     let chosenStock = this.props.selectedSymbolKey;
     let chartChoice = this.props.chartChoice;
     console.log(chartChoice);
-    /* this.renderLines(priceArr, diffArr, chosenStock, chartChoice); */
+    this.renderLines(priceArr, diffArr, chosenStock, chartChoice);
 
-    let l = document.getElementById("root");
-
-    l.appendChild(<LineSeries/>);
 
     return (
       <div>
@@ -43,7 +44,7 @@ class StockChart extends React.Component {
           height={500}>
           <HorizontalGridLines />
           <VerticalGridLines />
-          <div id="lines" />
+          {this.renderLines(priceArr, diffArr, chosenStock, chartChoice)}
           <XAxis title="Day" />
           <YAxis title="Price" style={{ fill: 'red' }} />
         </XYPlot>
