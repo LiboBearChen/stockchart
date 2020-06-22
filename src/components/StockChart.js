@@ -5,25 +5,37 @@ import { makeNormalChart, makeDiffChart } from './DataAnalyseTools';
 
 class StockChart extends React.Component {
 
-   renderLines(priceArr, diffArr, chosenStock, chartChoice) {
+  state = {
+    chartChoice: this.props.chartChoice
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      chartChoice: nextProps.chartChoice
+    });
+    
+  }
+
+
+  renderLines(priceArr, diffArr, chosenStock, chartChoice) {
     let lines;
-    if (chartChoice === 2) {
-      lines = document.createElement('div');
+    if (chartChoice == 0) {
+      lines = <LineSeries data={priceArr[chosenStock]} style={{ stroke: 'green', strokeWidth: 3 }} />
       console.log(chartChoice);
       console.log(lines);
     }
-    else if (chartChoice === 0) {
+    else if (chartChoice == 1) {
       lines = <LineSeries data={diffArr[chosenStock]} style={{ stroke: 'blue', strokeWidth: 3 }} />;
       console.log(chartChoice);
       console.log(lines);
     }
-    else if (chartChoice === 1) {
+    else if (chartChoice == 2) {
       lines = <div><LineSeries data={priceArr[chosenStock]} style={{ stroke: 'green', strokeWidth: 3 }} />
         <LineSeries data={diffArr[chosenStock]} style={{ stroke: 'blue', strokeWidth: 3 }} /></div>;
-        console.log(chartChoice);
-        console.log(lines);
+      console.log(chartChoice);
+      console.log(lines);
     }
-
+    console.log(chartChoice);
     return lines;
   }
 
@@ -31,10 +43,9 @@ class StockChart extends React.Component {
     let priceArr = makeNormalChart(this.props.dataArr, this.props.chartDays);
     let diffArr = makeDiffChart(this.props.dataArr, this.props.chartDays);
     let chosenStock = this.props.selectedSymbolKey;
-    let chartChoice = this.props.chartChoice;
-    console.log(chartChoice);
-    this.renderLines(priceArr, diffArr, chosenStock, chartChoice);
-
+    let chartChoice=this.state.chartChoice;
+    let lines=this.renderLines(priceArr, diffArr, chosenStock, chartChoice);
+    
 
     return (
       <div>
@@ -44,7 +55,7 @@ class StockChart extends React.Component {
           height={500}>
           <HorizontalGridLines />
           <VerticalGridLines />
-          {this.renderLines(priceArr, diffArr, chosenStock, chartChoice)}
+          {lines}
           <XAxis title="Day" />
           <YAxis title="Price" style={{ fill: 'red' }} />
         </XYPlot>
