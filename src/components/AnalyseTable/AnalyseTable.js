@@ -7,10 +7,11 @@ class AnalyseTable extends Component {
     renderTableData() {
         return this.props.relevanceArr.map((relevanceObj, index) => {
             const { symbol1, symbol2, averDiffPercen } = relevanceObj
-
+            let dwdaw=index+1;
+            console.log(dwdaw);
             return (
-                <tr key="index">
-                    <td>{index+1}</td>
+                <tr key="dwdaw">
+                    <td>{dwdaw}</td>
                     <td>{this.checkSymbol(symbol1)}</td>
                     <td>{this.checkSymbol(symbol2)}</td>
                     <td>{averDiffPercen}</td>
@@ -21,14 +22,6 @@ class AnalyseTable extends Component {
 
     checkSymbol = (key) => {
         return this.props.stockSymbolArr[key];
-    }
-
-
-    renderTableHeader() {
-        /* let header = Object.keys(this.props.relevanceArr[0])
-        return header.map((key, index) => {
-            return <th key={index}>{key.toUpperCase()}</th>
-        }) */
     }
 
     render() {
