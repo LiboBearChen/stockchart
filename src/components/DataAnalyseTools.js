@@ -80,7 +80,7 @@ export const makeDiffPercenChart = (dataArr, chartDays) => {
             let tempArr = [];
             let yValues1 = makePercenArr(dataArr[m][1]);
             let yValues2 = makePercenArr(dataArr[m + n][1]);
-            
+            console.log(yValues1);
             for (let i = 1; i < chartDays; i++) {
                 let dataObj = {};
                 dataObj.x = i;
