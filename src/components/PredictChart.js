@@ -1,6 +1,9 @@
 import React from 'react';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
+import { makeNormalChart, makeDiffChart } from './DataAnalyseTools';
+import { makeNormalChart, makeDiffChart } from './PredictAnalyseTools';
+
 
 class PredictChart extends React.Component {
 
@@ -12,7 +15,7 @@ class PredictChart extends React.Component {
 
     return (
       <div>
-        <h1 style={{ textAlign: 'center' }}>Stock Price Chart</h1>
+        <h1 style={{ textAlign: 'center' }}>Predicted Price Chart</h1>
         <XYPlot
           width={1000}
           height={500}>
