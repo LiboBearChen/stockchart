@@ -35,7 +35,7 @@ class StockChart extends React.Component {
                         data={linedata}
                         style={{ stroke: 'red', strokeWidth: 3 }} />
                     <XAxis title="Day" />
-                    <YAxis title="Price" style={{ fill: 'red' }} />
+                    <YAxis title="Difference of Fluctuation%" style={{ fill: 'red' }} />
                 </XYPlot>
             </div>
         )

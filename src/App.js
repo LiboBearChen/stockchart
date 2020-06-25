@@ -6,7 +6,7 @@ import RankingPicker from "./components/RankingPicker";
 import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
-import {makerelevanceArr} from './components/DataAnalyseTools';
+import { makerelevanceArr } from './components/DataAnalyseTools';
 import styles from './App.module.css';
 import ReactDOM from 'react-dom';
 
@@ -26,7 +26,7 @@ export default class App extends Component {
 
 
   //fetch all data for all stocks from API
-  async  getAllData() {
+  async getAllData() {
     let tempArr = [];
     for (let i = 0; i < this.state.stockSymbolArr.length; i++) {
       let stockSymbol = this.state.stockSymbolArr[i];
@@ -53,23 +53,27 @@ export default class App extends Component {
   }
 
   render() {
-    let tableData=makerelevanceArr(this.state.dataArr, this.state.chartDays);
+    let tableData = makerelevanceArr(this.state.dataArr, this.state.chartDays);
 
     return (
       <div className={styles.gridContainer}>
         <div className="styles.gridItem">
-          <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} chartChoice={this.state.chartChoice}/>
+          <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} chartChoice={this.state.chartChoice} />
         </div>
         <div className="styles.gridItem">
-          <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
-          <AnalysePicker handleChartChoiceChange={this.handleChartChoiceChange} />
+          <div className="styles.gridItem">
+            <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
+          </div>
+          <div className="styles.gridItem">
+            <AnalysePicker handleChartChoiceChange={this.handleChartChoiceChange} />
+          </div>
         </div>
         <div className="styles.gridItem">
           <AnalyseChart ranking={this.state.ranking} dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} />
         </div>
         <div className="styles.gridItem">
-          <RankingPicker rankingArr={tableData} handleRangkingChange={this.handleRangkingChange} stockSymbolArr={this.state.stockSymbolArr}/>
-          <AnalyseTable relevanceArr={tableData} stockSymbolArr={this.state.stockSymbolArr}/>
+          <RankingPicker rankingArr={tableData} handleRangkingChange={this.handleRangkingChange} stockSymbolArr={this.state.stockSymbolArr} />
+          <AnalyseTable relevanceArr={tableData} stockSymbolArr={this.state.stockSymbolArr} />
         </div>
       </div>
     );
