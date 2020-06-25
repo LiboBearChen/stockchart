@@ -15,7 +15,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stockSymbolArr: ["AAPL", "FB", "MSFT", "NFLX", "GOOGL"],
+      stockSymbolArr: ["AAPL", "FB", "MSFT", "NFLX", "000825"],
       dataArr: [],
       ranking: 0,
       selectedSymbolKey: 0,
@@ -38,6 +38,7 @@ export default class App extends Component {
 
   async componentDidMount() {
     await this.getAllData();
+    console.log(this.state.dataArr);
   }
 
   handleSymbolChange = (key) => {

@@ -7,11 +7,10 @@ class AnalyseTable extends Component {
     renderTableData() {
         return this.props.relevanceArr.map((relevanceObj, index) => {
             const { symbol1, symbol2, averDiffPercen } = relevanceObj
-            let dwdaw=index+1;
-            console.log(dwdaw);
+            let num=index+1;
             return (
-                <tr key="dwdaw">
-                    <td>{dwdaw}</td>
+                <tr key="num">
+                    <td>{num}</td>
                     <td>{this.checkSymbol(symbol1)}</td>
                     <td>{this.checkSymbol(symbol2)}</td>
                     <td>{averDiffPercen}</td>
@@ -25,7 +24,6 @@ class AnalyseTable extends Component {
     }
 
     render() {
-        console.log(this.props.relevanceArr);
         return (
             <div>
                 <h1 id='title' className={styles.title}>Analysis Table</h1>

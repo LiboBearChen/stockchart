@@ -12,7 +12,7 @@ export const fetchDailyData = async (stockSymbol) => {
         var response = await fetch(API_Call);
 
         var data = await response.json();
-        
+        console.log(data);
 
         for (let key in data['Time Series (Daily)']) {
             //convert string to number
@@ -21,7 +21,7 @@ export const fetchDailyData = async (stockSymbol) => {
             x=parseInt(x);
             stockChartXValues.push(x);
 
-            let y=data['Time Series (Daily)'][key]['1. open'];
+            let y=data['Time Series (Daily)'][key]['4. close'];
             y=parseFloat(y);
             stockChartYValues.push(y);
         }

@@ -1,3 +1,5 @@
+import { makeDiffPercenChart } from './DataAnalyseTools';
+
 export const makeDiffPercenChart = (dataArr, chartDays) => {
 
     let returnedArr = [];
