@@ -2,7 +2,7 @@ export const makeNormalChart = (dataArr, chartDays) => {
 
     let returnedArr = [];
 
-    //use all data in the array
+    //m stands for index of stock symbols
     for (let m = 0; m < dataArr.length; m++) {
         let tempArr = [];
         for (let i = 0; i < chartDays; i++) {
@@ -11,7 +11,7 @@ export const makeNormalChart = (dataArr, chartDays) => {
             let dataObj = {};
 
             dataObj.x = i;
-            dataObj.y = yValues[yValues.length - 1 - i];
+            dataObj.y = yValues[yValues.length - chartDays + i];
 
             tempArr.push(dataObj);
         }
