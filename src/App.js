@@ -20,7 +20,7 @@ export default class App extends Component {
       ranking: 0,
       selectedSymbolKey: 0,
       chartChoice: 0,
-      chartDays: 100
+      chartDays: 10
     };
   }
 

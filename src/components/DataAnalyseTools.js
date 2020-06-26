@@ -24,19 +24,24 @@ export const makeNormalChart = (dataArr, chartDays) => {
 export const makeDiffChart = (dataArr, chartDays) => {
 
     let returnedArr = [];
+    let normalArr=makeNormalChart(dataArr, chartDays);
 
-    //use all data in the array
-    for (let m = 0; m < dataArr.length; m++) {
+    for (let m = 0; m < normalArr.length; m++) {
         let tempArr = [];
-        for (let i = 1; i < chartDays; i++) {
+        let yValues=[];
 
-            //use makeDiffArr function
-            let yValues = makeDiffArr(dataArr[m][1]);
+        //make an array of y values
+        for (let i = 0; i < chartDays; i++){
+            yValues.push(normalArr[m][i].y);
+        }
+
+        //use makeDiffArr to make an array of difference
+        yValues = makeDiffArr(yValues);
+
+        for (let i = 0; i < chartDays; i++) {
             let dataObj = {};
-
             dataObj.x = i;
-            dataObj.y = yValues[yValues.length - 1 - i];
-
+            dataObj.y = yValues[i];
             tempArr.push(dataObj);
         }
         returnedArr.push(tempArr);
@@ -147,8 +152,16 @@ const makeDiffArr = (arr) => {
 
     if (arr.length > 1) {
         for (let i = 0; i < arr.length; i++) {
-            let num = arr[i + 1] - arr[i];
-            returnedArr.push(num);
+            let diff=0;
+            //no difference for the first number
+            if(i===0){
+                diff = 0;
+            }
+            else{
+                diff = arr[i] - arr[i-1];
+            }
+
+            returnedArr.push(diff);
         }
     }
 
