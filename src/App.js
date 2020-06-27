@@ -6,7 +6,7 @@ import RankingPicker from "./components/RankingPicker";
 import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
-import { makerelevanceArr } from './components/DataAnalyseTools';
+import { makeRelevanceArr } from './components/DataAnalyseTools';
 import styles from './App.module.css';
 import ReactDOM from 'react-dom';
 
@@ -54,7 +54,7 @@ export default class App extends Component {
   }
 
   render() {
-    let tableData = makerelevanceArr(this.state.dataArr, this.state.chartDays);
+    let tableData = makeRelevanceArr(this.state.dataArr, this.state.chartDays);
 
     return (
       <div className={styles.gridContainer}>

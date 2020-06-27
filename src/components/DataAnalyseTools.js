@@ -24,14 +24,14 @@ export const makeNormalChart = (dataArr, chartDays) => {
 export const makeDiffChart = (dataArr, chartDays) => {
 
     let returnedArr = [];
-    let normalArr=makeNormalChart(dataArr, chartDays);
+    let normalArr = makeNormalChart(dataArr, chartDays);
 
     for (let m = 0; m < normalArr.length; m++) {
         let tempArr = [];
-        let yValues=[];
+        let yValues = [];
 
         //make an array of y values
-        for (let i = 0; i < chartDays; i++){
+        for (let i = 0; i < chartDays; i++) {
             yValues.push(normalArr[m][i].y);
         }
 
@@ -46,31 +46,42 @@ export const makeDiffChart = (dataArr, chartDays) => {
         }
         returnedArr.push(tempArr);
     }
-
+    console.log(returnedArr);
     return returnedArr;
+
 }
 
 export const makePercenChart = (dataArr, chartDays) => {
 
     let returnedArr = [];
+    let diffArr = makeDiffChart(dataArr, chartDays);
+    let normalArr = makeNormalChart(dataArr, chartDays);
 
-    //use all data in the array
-    for (let m = 0; m < dataArr.length; m++) {
+    for (let m = 0; m < diffArr.length; m++) {
         let tempArr = [];
-        for (let i = 1; i < chartDays; i++) {
+        let diffValues = [];
+        let normalValues = [];
 
-            //use makeDiffArr function
-            let yValues = makePercenArr(dataArr[m][1]);
+        //make parameter arrays for the makePercenArr function
+        for (let i = 0; i < chartDays; i++) {
+            diffValues.push(diffArr[m][i].y);
+            normalValues.push(normalArr[m][i].y);
+        }
+
+        for (let i = 0; i < chartDays; i++) {
+
+            //use makePercenArr function
+            let yValues = makePercenArr(diffValues,normalValues);
             let dataObj = {};
 
             dataObj.x = i;
-            dataObj.y = yValues[yValues.length - 1 - i];
+            dataObj.y = yValues[i];
 
             tempArr.push(dataObj);
         }
         returnedArr.push(tempArr);
     }
-
+    console.log(returnedArr);
     return returnedArr;
 }
 
@@ -78,54 +89,55 @@ export const makePercenChart = (dataArr, chartDays) => {
 export const makeDiffPercenChart = (dataArr, chartDays) => {
 
     let returnedArr = [];
+    let percenArr = makePercenChart(dataArr, chartDays);
 
-    for (let m = 0; m < dataArr.length - 1; m++) {
-        
-        for (let n = 1; m+n < dataArr.length; n++) {
+    for (let m = 0; m < percenArr.length - 1; m++) {
+
+        for (let n = 1; m + n < percenArr.length; n++) {
             let tempArr = [];
-            let yValues1 = makePercenArr(dataArr[m][1]);
-            let yValues2 = makePercenArr(dataArr[m + n][1]);
-            for (let i = 1; i < chartDays; i++) {
+            let yValues1 = percenArr[m];
+            let yValues2 = percenArr[m + n];
+            for (let i = 0; i < chartDays; i++) {
                 let dataObj = {};
                 dataObj.x = i;
-                let num = yValues1[yValues1.length - 1 - i] - yValues2[yValues2.length - 1 - i];
+                let num = yValues1[i].y - yValues2[i].y;
                 if (num < 0) {
                     dataObj.y = -num;
                 }
                 else {
                     dataObj.y = num;
                 }
-                dataObj.symbol1=m;
-                dataObj.symbol2=m+n;
+                dataObj.symbol1 = m;
+                dataObj.symbol2 = m + n;
                 tempArr.push(dataObj);
             }
             returnedArr.push(tempArr);
         }
     }
-    
+
     return returnedArr;
 }
 
 export const makeAverDiffPercenArr = (dataArr, chartDays) => {
 
     let returnedArr = [];
-    let tempArr=makeDiffPercenChart(dataArr, chartDays);
-    for (let m = 0; m < tempArr.length; m++) {
+    let diffPercenArr = makeDiffPercenChart(dataArr, chartDays);
+    for (let m = 0; m < diffPercenArr.length; m++) {
         let dataObj = {};
-        let num=0;
-        for (let i = 0; i < chartDays-1; i++) {
-            num+=tempArr[m][i].y;
+        let num = 0;
+        for (let i = 0; i < chartDays; i++) {
+            num += diffPercenArr[m][i].y;
         }
-        dataObj.averDiffPercen=num/(chartDays-1);
-        dataObj.symbol1=tempArr[m][0].symbol1;
-        dataObj.symbol2=tempArr[m][0].symbol2;
+        dataObj.averDiffPercen = num / (chartDays - 1);
+        dataObj.symbol1 = diffPercenArr[m][0].symbol1;
+        dataObj.symbol2 = diffPercenArr[m][0].symbol2;
         returnedArr.push(dataObj);
     }
     return returnedArr;
 }
 
 //order the makeAverDiffPercenArr
-export const makerelevanceArr = (dataArr, chartDays) => {
+export const makeRelevanceArr = (dataArr, chartDays) => {
     let returnedArr = [];
     let tempArr = makeAverDiffPercenArr(dataArr, chartDays);
     let numArr = [];
@@ -152,13 +164,13 @@ const makeDiffArr = (arr) => {
 
     if (arr.length > 1) {
         for (let i = 0; i < arr.length; i++) {
-            let diff=0;
+            let diff = 0;
             //no difference for the first number
-            if(i===0){
+            if (i === 0) {
                 diff = 0;
             }
-            else{
-                diff = arr[i] - arr[i-1];
+            else {
+                diff = arr[i] - arr[i - 1];
             }
 
             returnedArr.push(diff);
@@ -169,20 +181,26 @@ const makeDiffArr = (arr) => {
 }
 
 //make an array of percentage
-const makePercenArr = (arr) => {
+const makePercenArr = (diffValues, normalValues) => {
     let returnedArr = [];
-    let diffArr = makeDiffArr(arr);
-    if (arr.length > 1) {
-        for (let i = 0; i < diffArr.length; i++) {
-            if (arr[i] !== 0) {
-                let num = diffArr[i] / arr[i];
-                returnedArr.push(num);
+
+    if (diffValues.length > 1) {
+
+    }
+    for (let i = 0; i < diffValues.length; i++) {
+        if(i===0){
+            returnedArr.push(0);
+        }
+        else{
+            if (normalValues[i-1] !== 0) {
+                let percentage = diffValues[i] / normalValues[i-1];
+                returnedArr.push(percentage);
             }
             else {
-                returnedArr.push(diffArr[i]);
+                returnedArr.push(0);
             }
-
         }
+        
     }
 
     return returnedArr;
