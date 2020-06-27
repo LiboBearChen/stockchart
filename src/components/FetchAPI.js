@@ -2,7 +2,7 @@ export const fetchDailyData = async (stockSymbol) => {
 
     const API_KEY = 'CX5XG0YFCZFJ41K0';
 
-    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockSymbol}&outputsize=compact&apikey=${API_KEY}`;
+    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockSymbol}&outputsize=full&apikey=${API_KEY}`;
     let stockChartXValues = [];
     let stockChartYValues = [];
     let returnedArr = [];

@@ -15,12 +15,13 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stockSymbolArr: ["AAPL", "FB", "MSFT", "NFLX", "GOOGL"],
+      stockSymbolArr: ["AAPL", "FB", "MSFT", "NFLX", "000825"],
+      //stockSymbolArr: ["000825 "],
       dataArr: [],
       ranking: 0,
       selectedSymbolKey: 0,
       chartChoice: 0,
-      chartDays: 100
+      chartDays: 500
     };
   }
 
