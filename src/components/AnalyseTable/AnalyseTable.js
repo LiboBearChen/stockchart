@@ -26,7 +26,7 @@ class AnalyseTable extends Component {
     render() {
         return (
             <div>
-                <h1 id='title' className={styles.title}>Analysis Table</h1>
+                <h1 id='title' className={styles.title}>Stock Correlation</h1>
                 <table id='relevance' className={styles.relevanceArr}>
                     <tbody>
                         <tr>
