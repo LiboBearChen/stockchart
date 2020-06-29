@@ -8,20 +8,19 @@ import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
 import { makeRelevanceArr } from './components/DataAnalyseTools';
 import styles from './App.module.css';
-import ReactDOM from 'react-dom';
+
 
 export default class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      stockSymbolArr: ["AAPL", "FB", "MSFT", "NFLX", "000825"],
-      //stockSymbolArr: ["000825 "],
+      stockSymbolArr: ["AAPL", "FB", "MSFT", "NFLX", "GOOGL"],
       dataArr: [],
       ranking: 0,
       selectedSymbolKey: 0,
       chartChoice: 0,
-      chartDays: 500
+      chartDays: 100
     };
   }
 

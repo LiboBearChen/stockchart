@@ -30,7 +30,7 @@ class StockChart extends React.Component {
     let lines=this.renderLines(line1,line2, chartChoice);
     line1=lines.line1;
     line2=lines.line2;
-    console.log(diffArr);
+    
     return (
       <div>
         <h1 style={{ textAlign: 'center' }}>Stock Price Chart</h1>

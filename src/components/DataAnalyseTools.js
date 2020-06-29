@@ -46,7 +46,7 @@ export const makeDiffChart = (dataArr, chartDays) => {
         }
         returnedArr.push(tempArr);
     }
-    console.log(returnedArr);
+
     return returnedArr;
 
 }
@@ -81,7 +81,7 @@ export const makePercenChart = (dataArr, chartDays) => {
         }
         returnedArr.push(tempArr);
     }
-    console.log(returnedArr);
+
     return returnedArr;
 }
 
