@@ -31,3 +31,34 @@ export const makeDiffPercenChart = (dataArr, chartDays) => {
     
     return returnedArr;
 }
+
+export const arrayCutter = (longData, cutDays) => {
+    let returnedArr = [];
+    let cutNum=longData/cutDays;
+    let shortDataArr = [];
+    let dateArray = [];
+
+    //at least 2 shortDatas
+    if(cutNum>1){
+        //i counts for shortData
+        for (let i = 0; i < cutNum; i++){
+            let shortData = [];
+            let dateObj = {};
+
+            //cut both date array and price array
+            
+
+
+            shortDataArr.push(shortData);
+            dateArray.push(dateObj);
+        }
+    }
+    else{
+        console.log("Data is not enough for analysis!");
+    }
+    
+    //returnedArr[0] is shortDataArr, returnedArr[1] is dateArray
+    returnedArr.push(shortDataArr);
+    returnedArr.push(dateArray);
+    return returnedArr;
+}
