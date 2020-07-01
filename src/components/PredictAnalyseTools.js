@@ -2,16 +2,16 @@
 
 export const arrayCutter = (longData, cutDays) => {
     let returnedArr = [];
-    let cutNum=longData/cutDays;
+    let cutNum=longData[0].length/cutDays;
     let shortDataArr = [];
     let dateArray = [];
     let longDateArr=longData[0];
     let longPriceArr=longData[1];
-
+    console.log(cutNum);
     //at least 2 shortDatas
     if(cutNum>1){
         //i counts for shortData
-        for (let i = 0; i < cutNum; i++){
+        for (let i = 1; i <= cutNum; i++){
             let shortData = [];
             let dateObj = {};
             let cutArr=[];
