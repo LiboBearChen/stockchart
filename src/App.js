@@ -7,6 +7,7 @@ import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
 import { makeRelevanceArr } from './components/DataAnalyseTools';
+import { arrayCutter } from './components/PredictAnalyseTools';
 import styles from './App.module.css';
 
 
@@ -39,6 +40,9 @@ export default class App extends Component {
   async componentDidMount() {
     await this.getAllData();
     console.log(this.state.dataArr);
+
+    let test=arrayCutter(this.state.dataArr[4],30);
+    console.log(test);
   }
 
   handleSymbolChange = (key) => {
@@ -55,7 +59,7 @@ export default class App extends Component {
 
   render() {
     let tableData = makeRelevanceArr(this.state.dataArr, this.state.chartDays);
-
+    
     return (
       <div className={styles.gridContainer}>
         <div className="styles.gridItem">
