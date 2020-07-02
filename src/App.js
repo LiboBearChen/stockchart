@@ -16,12 +16,12 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stockSymbolArr: ["AAPL", "FB", "MSFT", "NFLX", "GOOGL"],
+      stockSymbolArr: ["AAPL", "FB", "MSFT", "NFLX", "000825"],
       dataArr: [],
       ranking: 0,
       selectedSymbolKey: 0,
       chartChoice: 0,
-      chartDays: 100
+      chartDays: 500
     };
   }
 
@@ -39,10 +39,11 @@ export default class App extends Component {
 
   async componentDidMount() {
     await this.getAllData();
-    console.log(this.state.dataArr);
 
     let test=arrayCutter(this.state.dataArr[4],30);
-    console.log(test);
+    let a=makeRelevanceArr(test[0], 30);
+    console.log(a);
+    console.log(test[1]);
   }
 
   handleSymbolChange = (key) => {

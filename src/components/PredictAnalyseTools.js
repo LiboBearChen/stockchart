@@ -7,7 +7,7 @@ export const arrayCutter = (longData, cutDays) => {
     let dateArray = [];
     let longDateArr=longData[0];
     let longPriceArr=longData[1];
-    console.log(cutNum);
+
     //at least 2 shortDatas
     if(cutNum>1){
         //i counts for shortData
