@@ -8,6 +8,7 @@ import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
 import { makeRelevanceArr } from './components/DataAnalyseTools';
 import { arrayCutter } from './components/PredictAnalyseTools';
+import { InputSymbol, InputDays } from './components/TextIput';
 import styles from './App.module.css';
 
 
@@ -50,6 +51,10 @@ export default class App extends Component {
     this.setState({ selectedSymbolKey: key });
   }
 
+  handleDaysChange = (key) => {
+    this.setState({ chartDays: key });
+  }
+
   handleChartChoiceChange = (key) => {
     this.setState({ chartChoice: key });
   }
@@ -72,6 +77,8 @@ export default class App extends Component {
           </div>
           <div className="styles.gridItem">
             <AnalysePicker handleChartChoiceChange={this.handleChartChoiceChange} />
+            <InputSymbol/>
+            <InputDays handleDaysChange={this.handleDaysChange}/>
           </div>
         </div>
         <div className="styles.gridItem">
