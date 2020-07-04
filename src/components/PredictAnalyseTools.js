@@ -42,3 +42,9 @@ export const arrayCutter = (longData, cutDays) => {
     
     return returnedArr;
 }
+
+export const makePredictLine = (index1,index2) => {
+    let line;
+
+    return line;
+}

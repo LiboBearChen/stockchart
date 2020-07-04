@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { fetchDailyData } from './components/FetchAPI';
 import StockChart from "./components/StockChart";
+import PredictChart from "./components/PredictChart";
 import SymbolPicker from "./components/SymbolPicker";
 import RankingPicker from "./components/RankingPicker";
 import AnalysePicker from "./components/AnalysePicker";
@@ -87,6 +88,9 @@ export default class App extends Component {
         <div className="styles.gridItem">
           <RankingPicker rankingArr={tableData} handleRangkingChange={this.handleRangkingChange} stockSymbolArr={this.state.stockSymbolArr} />
           <AnalyseTable relevanceArr={tableData} stockSymbolArr={this.state.stockSymbolArr} />
+        </div>
+        <div>
+          <PredictChart />
         </div>
       </div>
     );
