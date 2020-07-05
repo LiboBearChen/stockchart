@@ -18,11 +18,15 @@ export const fetchDailyData = async (stockSymbol) => {
             let x=key.replace("-", "");
             x=x.replace("-", "");
             x=parseInt(x);
-            stockChartXValues.push(x);
 
+            //trading suspended
+            if(!(stockSymbol==="000825" && x>20180412 && x<20180916)){
+                stockChartXValues.push(x);
             let y=data['Time Series (Daily)'][key]['4. close'];
             y=parseFloat(y);
             stockChartYValues.push(y);
+            }
+            
         }
 
         stockChartXValues.reverse();

@@ -2,7 +2,7 @@ import React from 'react';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
 import { makeNormalChart, makeDiffChart } from './DataAnalyseTools';
-import { makeNormalChart, makeDiffChart } from './PredictAnalyseTools';
+import { arrayCutter, makePredictLine } from './PredictAnalyseTools';
 
 
 class PredictChart extends React.Component {
@@ -30,4 +30,4 @@ class PredictChart extends React.Component {
   }
 }
 
-export default StockChart;
+export default PredictChart;
