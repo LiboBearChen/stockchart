@@ -8,7 +8,7 @@ import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
 import { makeRelevanceArr } from './components/DataAnalyseTools';
-import { arrayCutter } from './components/PredictAnalyseTools';
+import { arrayCutter ,makeRecentArr} from './components/PredictAnalyseTools';
 import { InputSymbol, InputDays } from './components/TextIput';
 import styles from './App.module.css';
 
@@ -42,10 +42,11 @@ export default class App extends Component {
   async componentDidMount() {
     await this.getAllData();
 
-    let test=arrayCutter(this.state.dataArr[4],30);
-    let a=makeRelevanceArr(test[0], 30);
+    let test=arrayCutter(this.state.dataArr[4],20);
+    let relevanceArr=makeRelevanceArr(test[0], 20);
+    let a=makeRecentArr(relevanceArr);
+    console.log(relevanceArr);
     console.log(a);
-    console.log(test[1]);
   }
 
   handleSymbolChange = (key) => {

@@ -48,3 +48,15 @@ export const makePredictLine = (index1,index2) => {
 
     return line;
 }
+
+export const makeRecentArr = (relevanceArr) => {
+    let returnedArr=[];
+    
+    relevanceArr.forEach(element => {
+        if(element.symbol1===0){
+            returnedArr.push(element);
+          }
+    });
+
+    return returnedArr;
+}
