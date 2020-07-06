@@ -61,16 +61,27 @@ export const makeRecentArr = (relevanceArr) => {
     return returnedArr;
 }
 
-export const expandArr = (recentArr, cutArr, ranking, factor) => {
+export const makeExpandArr = (recentArr, cutArr, ranking) => {
     let returnedArr=[];
     
+    //push the first arr
+    let firstArr=[];
+    firstArr.push(cutArr[0][1][0].concat(cutArr[0][0][0]));
+    firstArr.push(cutArr[0][1][1].concat(cutArr[0][0][1]));
+    returnedArr.push(firstArr);
+
+    //push other arr listed in the ranking
     for(let i=0; i<ranking; i++){
         let arrNum=recentArr[i].symbol2;
 
-        if(){
-            
+        if(arrNum+1<cutArr[0].length){
+            let newDayArr=cutArr[0][arrNum+1][0].concat(cutArr[0][arrNum][0]);
+            let newPriceArr=cutArr[0][arrNum+1][1].concat(cutArr[0][arrNum][1]);
+            let newArr=[];
+            newArr.push(newDayArr);
+            newArr.push(newPriceArr);
+            returnedArr.push(newArr);
         }
-        cutArr[0][arrNum]+cutArr[0][arrNum]
     }
 
     return returnedArr;

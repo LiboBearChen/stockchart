@@ -8,7 +8,7 @@ import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
 import { makeRelevanceArr } from './components/DataAnalyseTools';
-import { arrayCutter ,makeRecentArr} from './components/PredictAnalyseTools';
+import { arrayCutter ,makeRecentArr, makeExpandArr} from './components/PredictAnalyseTools';
 import { InputSymbol, InputDays } from './components/TextIput';
 import styles from './App.module.css';
 
@@ -49,6 +49,9 @@ export default class App extends Component {
     console.log(relevanceArr);
     let recentArr1=makeRecentArr(relevanceArr);
     console.log(recentArr1);
+
+    let expandArr=makeExpandArr(recentArr1, cutArr, 10);
+    console.log(expandArr); 
   }
 
   handleSymbolChange = (key) => {
