@@ -60,3 +60,18 @@ export const makeRecentArr = (relevanceArr) => {
 
     return returnedArr;
 }
+
+export const expandArr = (recentArr, cutArr, ranking, factor) => {
+    let returnedArr=[];
+    
+    for(let i=0; i<ranking; i++){
+        let arrNum=recentArr[i].symbol2;
+
+        if(){
+            
+        }
+        cutArr[0][arrNum]+cutArr[0][arrNum]
+    }
+
+    return returnedArr;
+}
