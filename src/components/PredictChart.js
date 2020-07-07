@@ -1,8 +1,8 @@
 import React from 'react';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
-import { makeNormalChart, makeRelevanceArr } from './components/DataAnalyseTools';
-import { arrayCutter, makeRecentArr,  makeExpandArr} from './components/PredictAnalyseTools';
+import { makeNormalChart, makeRelevanceArr } from './DataAnalyseTools';
+import { arrayCutter, makeRecentArr,  makeExpandArr} from './PredictAnalyseTools';
 
 
 
@@ -11,12 +11,13 @@ class PredictChart extends React.Component {
   
 
   render() {
-    let cutArr=arrayCutter(this.state.dataArr[4],10);
+    console.log(this.props.dataArr); 
+    let cutArr=arrayCutter(this.props.dataArr[4],10);
     //rank arrays with length of 10
     let relevanceArr=makeRelevanceArr(cutArr[0], 10);
     let recentArr1=makeRecentArr(relevanceArr);
     let expandArr=makeExpandArr(recentArr1, cutArr, 10);
-    console.log(expandArr); 
+    
 
     let priceArr = makeNormalChart(expandArr, 20);
     let line0=<LineSeries data={priceArr[0]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
