@@ -42,16 +42,7 @@ export default class App extends Component {
   async componentDidMount() {
     await this.getAllData();
 
-    let cutArr=arrayCutter(this.state.dataArr[4],10);
-    console.log(cutArr);
-    //rank arrays with length of 10
-    let relevanceArr=makeRelevanceArr(cutArr[0], 10);
-    console.log(relevanceArr);
-    let recentArr1=makeRecentArr(relevanceArr);
-    console.log(recentArr1);
-
-    let expandArr=makeExpandArr(recentArr1, cutArr, 10);
-    console.log(expandArr); 
+    
   }
 
   handleSymbolChange = (key) => {
