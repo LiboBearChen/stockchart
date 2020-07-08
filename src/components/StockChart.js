@@ -21,6 +21,7 @@ class StockChart extends React.Component {
   }
 
   render() {
+    console.log(this.props.dataArr); 
     let priceArr = makeNormalChart(this.props.dataArr, this.props.chartDays);
     let diffArr = makeDiffChart(this.props.dataArr, this.props.chartDays);
     let chosenStock = this.props.selectedSymbolKey;

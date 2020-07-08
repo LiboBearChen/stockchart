@@ -41,7 +41,6 @@ export default class App extends Component {
 
   async componentDidMount() {
     await this.getAllData();
-    console.log(this.state.dataArr);
   }
 
   handleSymbolChange = (key) => {
@@ -86,7 +85,7 @@ export default class App extends Component {
           <AnalyseTable relevanceArr={tableData} stockSymbolArr={this.state.stockSymbolArr} />
         </div>
         <div>
-          <PredictChart dataArr={this.state.dataArr} />
+        <PredictChart dataArr={this.state.dataArr} />
         </div>
       </div>
     );
