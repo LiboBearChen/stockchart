@@ -71,7 +71,7 @@ export const makeExpandArr = (recentArr, cutArr, ranking) => {
     returnedArr.push(firstArr);
 
     //push other arr listed in the ranking
-    for(let i=0; i<ranking; i++){
+    for(let i=0; i<ranking-1; i++){
         let arrNum=recentArr[i].symbol2;
 
         if(arrNum+1<cutArr[0].length){
