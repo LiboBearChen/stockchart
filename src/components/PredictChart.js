@@ -25,13 +25,14 @@ class PredictChart extends React.Component {
       let expandArr1 = makeExpandArr(recentArr, cutArr, 6);
       let relevanceArr1 = makeRelevanceArr(expandArr1[0], 20);
       let recentArr1 = makeRecentArr(relevanceArr1);
-
+      console.log(expandArr1);
+      console.log(relevanceArr1);
       //expend to 30 days
-      let expandArr2 = makeExpandArr(recentArr1, cutArr, 3);
+      /* let expandArr2 = makeExpandArr(recentArr1, cutArr, 3);
       let relevanceArr2 = makeRelevanceArr(expandArr2[0], 30);
-      let recentArr2 = makeRecentArr(relevanceArr2);
+      let recentArr2 = makeRecentArr(relevanceArr2); */
 
-      let priceArr = makeNormalChart(recentArr2, 30);
+      let priceArr = makeNormalChart(recentArr1, 20);
       line0 = <LineSeries data={priceArr[0]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
       line1 = <LineSeries data={priceArr[1]} style={{ stroke: '#666666', strokeWidth: 3 }} />;
       line2 = <LineSeries data={priceArr[2]} style={{ stroke: '#737373', strokeWidth: 3 }} />;
