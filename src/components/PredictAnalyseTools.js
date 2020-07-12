@@ -43,9 +43,10 @@ export const arrayCutter = (longData, cutDays) => {
     return returnedArr;
 }
 
-export const makePredictLine = (index1,index2) => {
+export const makePredictLine = (recentArr,predictDays) => {
     let line;
-
+    let cutNumArr=recentArr.map((obj)=>{return obj.symbol2});
+    console.log(cutNumArr);
     return line;
 }
 
