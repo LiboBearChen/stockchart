@@ -41,7 +41,7 @@ export default class App extends Component {
 
   async componentDidMount() {
     await this.getAllData();
-    console.log(this.state.dataArr);
+
   }
 
   handleSymbolChange = (key) => {

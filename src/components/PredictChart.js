@@ -26,7 +26,7 @@ class PredictChart extends React.Component {
       let relevanceArr1 = makeRelevanceArr(expandArr, 20);
       let recentArr1 = makeRecentArr(relevanceArr1);
       let expandArr1 = makeExpandArr(recentArr1, cutArr, 6);
-
+      console.log(recentArr);
       console.log(recentArr1);
 
       let line=makePredictLine(recentArr1,10);
