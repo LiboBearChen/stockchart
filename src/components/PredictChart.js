@@ -2,7 +2,7 @@ import React from 'react';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
 import { makeNormalChart, makeRelevanceArr } from './DataAnalyseTools';
-import { arrayCutter, makeRecentArr, makeExpandArr, makePredictLine } from './PredictAnalyseTools';
+import { arrayCutter, makeRecentArr, makeExpandArr, makeLstaDateArr } from './PredictAnalyseTools';
 
 
 
@@ -20,22 +20,24 @@ class PredictChart extends React.Component {
       let cutArr = arrayCutter(this.props.dataArr[4], 10);
       let relevanceArr = makeRelevanceArr(cutArr[0], 10);
       let recentArr = makeRecentArr(relevanceArr);
+
+      //6 includes the recent array
       let expandArr = makeExpandArr(recentArr, cutArr, 6);
-
-
       let relevanceArr1 = makeRelevanceArr(expandArr, 20);
-      let recentArr1 = makeRecentArr(relevanceArr1);
-      let expandArr1 = makeExpandArr(recentArr1, cutArr, 6);
-      console.log(recentArr);
-      console.log(recentArr1);
+      let recentArrNew = makeRecentArr(relevanceArr1);
+      
+      
+      console.log(expandArr);
+      console.log(recentArrNew);
 
-      let line=makePredictLine(recentArr1,10);
+      let lastDateArr=makeLstaDateArr(recentArrNew,expandArr);
+      console.log(lastDateArr);
       //expend to 30 days
-      /* let expandArr2 = makeExpandArr(recentArr1, cutArr, 3);
+      /* let expandArr2 = makeExpandArr(recentArrNew, cutArr, 3);
       let relevanceArr2 = makeRelevanceArr(expandArr2[0], 30);
       let recentArr2 = makeRecentArr(relevanceArr2); */
 
-      let priceArr = makeNormalChart(expandArr1, 20);
+      let priceArr = makeNormalChart(expandArr, 20);
       line0 = <LineSeries data={priceArr[0]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
       line1 = <LineSeries data={priceArr[1]} style={{ stroke: '#666666', strokeWidth: 3 }} />;
       line2 = <LineSeries data={priceArr[2]} style={{ stroke: '#737373', strokeWidth: 3 }} />;
