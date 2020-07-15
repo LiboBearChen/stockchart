@@ -44,7 +44,22 @@ export const arrayCutter = (longData, cutDays) => {
 }
 
 export const makePredictDataSourceArr = (longData, lastDateArr) => {
-
+    let returnedArr=[];
+    let dateArr=longData[0];
+    let priceArr=longData[1];
+    returnedArr=lastDateArr.map(date=>{
+        for(let i=0;i<dateArr.length;i++){
+            if(dateArr[i]==date){
+                let newDateArr = dateArr.slice(-dateArr.length+i+1);
+                let newPriceArr = priceArr.slice(-dateArr.length+i+1);
+                let obj=[];
+                obj.push(newDateArr);
+                obj.push(newPriceArr);
+                return obj;
+            }
+        }
+    });
+    return returnedArr;
 }
 
 export const makeLastDateArr = (recentArrNew, expandArr) => {

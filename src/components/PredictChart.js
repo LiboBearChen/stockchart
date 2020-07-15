@@ -34,7 +34,7 @@ class PredictChart extends React.Component {
       console.log(lastDateArr);
 
       let predictDataSourceArr=makePredictDataSourceArr(this.props.dataArr[4], lastDateArr);
-      console.log(this.props.dataArr[4]);
+      console.log(predictDataSourceArr);
       //expend to 30 days
       /* let expandArr2 = makeExpandArr(recentArrNew, cutArr, 3);
       let relevanceArr2 = makeRelevanceArr(expandArr2[0], 30);
