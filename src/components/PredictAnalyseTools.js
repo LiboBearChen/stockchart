@@ -43,7 +43,11 @@ export const arrayCutter = (longData, cutDays) => {
     return returnedArr;
 }
 
-export const makeLstaDateArr = (recentArrNew, expandArr) => {
+export const makePredictDataSourceArr = (longData, lastDateArr) => {
+
+}
+
+export const makeLastDateArr = (recentArrNew, expandArr) => {
     let returnedArr=[];
 
     let numArr=recentArrNew.map(obj=>{return obj.symbol2});
