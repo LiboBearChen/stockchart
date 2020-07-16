@@ -62,6 +62,20 @@ export const makePredictDataSourceArr = (longData, lastDateArr) => {
     return returnedArr;
 }
 
+export const findMinDays = predictDataSourceArr => {
+    let daysArr=[];
+    let minDays;
+
+    daysArr=predictDataSourceArr.map(obj=>{
+        return obj[0].length;
+    });
+    console.log(daysArr);
+    daysArr.sort(function(a, b){return a - b});
+    minDays=daysArr[0];
+
+    return minDays;
+}
+
 export const makeLastDateArr = (recentArrNew, expandArr) => {
     let returnedArr=[];
 

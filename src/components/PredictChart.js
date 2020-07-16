@@ -2,7 +2,7 @@ import React from 'react';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
 import { makeNormalChart, makeRelevanceArr } from './DataAnalyseTools';
-import { arrayCutter, makeRecentArr, makeExpandArr, makeLastDateArr , makePredictDataSourceArr} from './PredictAnalyseTools';
+import { arrayCutter, makeRecentArr, makeExpandArr, makeLastDateArr , makePredictDataSourceArr, findMinDays} from './PredictAnalyseTools';
 
 
 
@@ -25,16 +25,14 @@ class PredictChart extends React.Component {
       let expandArr = makeExpandArr(recentArr, cutArr, 6);
       let relevanceArr1 = makeRelevanceArr(expandArr, 20);
       let recentArrNew = makeRecentArr(relevanceArr1);
-      
-      
-      console.log(expandArr);
-      console.log(recentArrNew);
 
       let lastDateArr=makeLastDateArr(recentArrNew,expandArr);
-      console.log(lastDateArr);
 
       let predictDataSourceArr=makePredictDataSourceArr(this.props.dataArr[4], lastDateArr);
       console.log(predictDataSourceArr);
+
+      let minDays=findMinDays(predictDataSourceArr);
+      console.log(minDays);
       //expend to 30 days
       /* let expandArr2 = makeExpandArr(recentArrNew, cutArr, 3);
       let relevanceArr2 = makeRelevanceArr(expandArr2[0], 30);
