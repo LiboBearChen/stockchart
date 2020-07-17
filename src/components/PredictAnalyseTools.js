@@ -69,7 +69,6 @@ export const findMinDays = predictDataSourceArr => {
     daysArr=predictDataSourceArr.map(obj=>{
         return obj[0].length;
     });
-    console.log(daysArr);
     daysArr.sort(function(a, b){return a - b});
     minDays=daysArr[0];
 
