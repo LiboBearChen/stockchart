@@ -41,7 +41,7 @@ class PredictChart extends React.Component {
 
       let priceArr = makeNormalChart(predictDataSourceArr, minDays);
       console.log(priceArr);
-      line0 = <LineSeries data={priceArr[1]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
+      line0 = <LineSeries data={priceArr[0]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
       line1 = <LineSeries data={priceArr[1]} style={{ stroke: '#666666', strokeWidth: 3 }} />;
       line2 = <LineSeries data={priceArr[2]} style={{ stroke: '#737373', strokeWidth: 3 }} />;
       line3 = <LineSeries data={priceArr[3]} style={{ stroke: '#bfbfbf', strokeWidth: 3 }} />;
