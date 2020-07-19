@@ -123,3 +123,26 @@ export const makeExpandArr = (recentArr, cutArr, ranking) => {
 
     return returnedArr;
 }
+
+export const makePredictChart = (dataArr, chartDays) => {
+
+    let returnedArr = [];
+
+    for (let m = 0; m < dataArr.length; m++) {
+        let tempArr = [];
+        for (let i = 0; i < chartDays; i++) {
+
+            let yValues = dataArr[m][1];
+            let dataObj = {};
+
+            dataObj.x = i;
+            dataObj.y = yValues[i];
+
+            tempArr.push(dataObj);
+        }
+        returnedArr.push(tempArr);
+        console.log(returnedArr);
+    }
+
+    return returnedArr;
+}

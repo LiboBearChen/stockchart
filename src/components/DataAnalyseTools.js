@@ -1,7 +1,5 @@
 export const makeNormalChart = (dataArr, chartDays) => {
 
-    console.log(dataArr);
-    console.log(chartDays);
     let returnedArr = [];
 
     //m stands for index of stock symbols

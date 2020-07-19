@@ -1,8 +1,8 @@
 import React from 'react';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
-import { makeNormalChart, makeRelevanceArr } from './DataAnalyseTools';
-import { arrayCutter, makeRecentArr, makeExpandArr, makeLastDateArr , makePredictDataSourceArr, findMinDays} from './PredictAnalyseTools';
+import { makePercenChart, makeRelevanceArr } from './DataAnalyseTools';
+import { arrayCutter, makeRecentArr, makeExpandArr, makeLastDateArr , makePredictDataSourceArr, findMinDays, makePredictChart} from './PredictAnalyseTools';
 
 
 
@@ -29,17 +29,18 @@ class PredictChart extends React.Component {
       let lastDateArr=makeLastDateArr(recentArrNew,expandArr);
 
       let predictDataSourceArr=makePredictDataSourceArr(this.props.dataArr[4], lastDateArr);
-      console.log(this.props.dataArr);
+      
       console.log(predictDataSourceArr);
 
       let minDays=findMinDays(predictDataSourceArr);
-
+      let perArr=makePercenChart(predictDataSourceArr, minDays)
+      console.log(perArr);
       //expend to 30 days
       /* let expandArr2 = makeExpandArr(recentArrNew, cutArr, 3);
       let relevanceArr2 = makeRelevanceArr(expandArr2[0], 30);
       let recentArr2 = makeRecentArr(relevanceArr2); */
 
-      let priceArr = makeNormalChart(predictDataSourceArr, minDays);
+      let priceArr = makePredictChart(predictDataSourceArr, minDays);
       console.log(priceArr);
       line0 = <LineSeries data={priceArr[0]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
       line1 = <LineSeries data={priceArr[1]} style={{ stroke: '#666666', strokeWidth: 3 }} />;
