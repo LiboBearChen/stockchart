@@ -38,10 +38,10 @@ class PredictChart extends React.Component {
       let perArr=makePredictPercentArr(predictDataSourceArr, minDays);
       console.log(perArr);
 
-      let nowPrice=this.props.dataArr[4][1][this.props.dataArr[4].length-1];
-      console.log(nowPrice);
+      /* let nowPrice=this.props.dataArr[4][1][this.props.dataArr[4].length-1];
+      console.log(nowPrice); */
       let chartDays=perArr.length;
-      let priceArr = makePredictChart(perArr, nowPrice, chartDays);
+      let priceArr = makePredictChart(perArr, 3.63, 60);
 
       line0 = <LineSeries data={priceArr[0]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
       line1 = <LineSeries data={priceArr[1]} style={{ stroke: '#666666', strokeWidth: 3 }} />;
