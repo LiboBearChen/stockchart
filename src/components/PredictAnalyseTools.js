@@ -50,8 +50,9 @@ export const makePredictDataSourceArr = (longData, lastDateArr) => {
     returnedArr=lastDateArr.map(date=>{
         for(let i=0;i<dateArr.length;i++){
             if(dateArr[i]==date){
-                let newDateArr = dateArr.slice(-dateArr.length+i+1);
-                let newPriceArr = priceArr.slice(-dateArr.length+i+1);
+                //include the last date
+                let newDateArr = dateArr.slice(-dateArr.length+i);
+                let newPriceArr = priceArr.slice(-dateArr.length+i);
                 let obj=[];
                 obj.push(newDateArr);
                 obj.push(newPriceArr);
@@ -124,21 +125,44 @@ export const makeExpandArr = (recentArr, cutArr, ranking) => {
     return returnedArr;
 }
 
-export const makePredictChart = (dataArr, chartDays) => {
+export const makePredictChart = (perArr, nowPrice, chartDays) => {
 
     let returnedArr = [];
 
-    for (let m = 0; m < dataArr.length; m++) {
+    for (let m = 0; m < perArr.length; m++) {
         let tempArr = [];
+        let prePrice;
         for (let i = 0; i < chartDays; i++) {
-
-            let yValues = dataArr[m][1];
+            //set nowPrice as the first base data
+            if(i===0){
+                prePrice=nowPrice;
+            }
             let dataObj = {};
 
             dataObj.x = i;
-            dataObj.y = yValues[i];
-
+            dataObj.y = prePrice*(1+perArr[i]);
+            prePrice=dataObj.y; 
             tempArr.push(dataObj);
+        }
+        returnedArr.push(tempArr);
+    }
+
+    return returnedArr;
+}
+
+export const makePredictPercentArr = (predictDataSourceArr, minDays) => {
+
+    let returnedArr = [];
+
+    for (let m = 0; m < predictDataSourceArr.length; m++) {
+        let yValues = predictDataSourceArr[m][1];
+        let tempArr = [];
+        for (let i = 1; i < minDays; i++) {
+
+            
+            let per=(yValues[i]-yValues[i-1])/yValues[i-1];
+
+            tempArr.push(per);
         }
         returnedArr.push(tempArr);
     }
