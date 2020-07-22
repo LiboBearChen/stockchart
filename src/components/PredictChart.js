@@ -28,8 +28,7 @@ class PredictChart extends React.Component {
 
       let lastDateArr=makeLastDateArr(recentArrNew,expandArr);
 
-      let predictDataSourceArr=makePredictDataSourceArr(this.props.dataArr[4], lastDateArr);
-      
+      let predictDataSourceArr=makePredictDataSourceArr(this.props.dataArr[4], lastDateArr); 
       console.log(predictDataSourceArr);
 
       let minDays=findMinDays(predictDataSourceArr);
@@ -38,11 +37,16 @@ class PredictChart extends React.Component {
       let perArr=makePredictPercentArr(predictDataSourceArr, minDays);
       console.log(perArr);
 
-      /* let nowPrice=this.props.dataArr[4][1][this.props.dataArr[4].length-1];
-      console.log(nowPrice); */
-      let chartDays=perArr.length;
-      let priceArr = makePredictChart(perArr, 3.63, 60);
+      let nowPrice=this.props.dataArr[4][1][this.props.dataArr[4][0].length-1];
+      console.log(nowPrice);
+      console.log(this.props.dataArr);
+      console.log(this.props.dataArr[4][0].length-1);
 
+
+      let chartDays=perArr[0].length;
+      console.log(chartDays);
+
+      let priceArr = makePredictChart(perArr, nowPrice, chartDays);
       line0 = <LineSeries data={priceArr[0]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
       line1 = <LineSeries data={priceArr[1]} style={{ stroke: '#666666', strokeWidth: 3 }} />;
       line2 = <LineSeries data={priceArr[2]} style={{ stroke: '#737373', strokeWidth: 3 }} />;

@@ -150,7 +150,7 @@ export const makePredictPercentArr = (predictDataSourceArr, minDays) => {
 export const makePredictChart = (perArr, nowPrice, chartDays) => {
 
     let returnedArr = [];
-    console.log("before");
+
     for (let m = 0; m < perArr.length; m++) {
         let tempArr = [];
         //set nowPrice as the first base data
@@ -165,8 +165,6 @@ export const makePredictChart = (perArr, nowPrice, chartDays) => {
             tempArr.push(dataObj);
         }
         returnedArr.push(tempArr);
-        console.log("in");
     }
-    console.log(returnedArr);
     return returnedArr;
 }
