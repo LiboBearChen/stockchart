@@ -3,12 +3,21 @@ import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSerie
 import 'react-vis/dist/style.css';
 import { makePercenChart, makeRelevanceArr } from './DataAnalyseTools';
 import { arrayCutter, makeRecentArr, makeExpandArr, makeLastDateArr , makePredictDataSourceArr, findMinDays, makePredictChart, makePredictPercentArr} from './PredictAnalyseTools';
-
+import {InputDays } from './TextIput';
 
 
 class PredictChart extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      chartDays: 10
+    };
+  }
 
+  handleDaysChange = (key) => {
+    this.setState({ chartDays: key });
+  }
 
   render() {
 
@@ -43,10 +52,10 @@ class PredictChart extends React.Component {
       console.log(this.props.dataArr[4][0].length-1);
 
 
-      let chartDays=perArr[0].length;
-      console.log(chartDays);
+      let maxChartDays=perArr[0].length;
+      console.log(maxChartDays);
 
-      let priceArr = makePredictChart(perArr, nowPrice, chartDays);
+      let priceArr = makePredictChart(perArr, nowPrice, this.state.chartDays);
       line0 = <LineSeries data={priceArr[0]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
       line1 = <LineSeries data={priceArr[1]} style={{ stroke: '#666666', strokeWidth: 3 }} />;
       line2 = <LineSeries data={priceArr[2]} style={{ stroke: '#737373', strokeWidth: 3 }} />;
@@ -69,6 +78,7 @@ class PredictChart extends React.Component {
           <XAxis title="Day" />
           <YAxis title="Price" style={{ fill: 'red' }} />
         </XYPlot>
+        <InputDays handleDaysChange={this.handleDaysChange}/>
       </div>
     )
   }
