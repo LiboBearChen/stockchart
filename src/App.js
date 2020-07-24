@@ -75,7 +75,6 @@ export default class App extends Component {
           <div className="styles.gridItem">
             <AnalysePicker handleChartChoiceChange={this.handleChartChoiceChange} />
             <InputSymbol/>
-            <InputDays handleDaysChange={this.handleDaysChange}/>
           </div>
         </div>
         <div className="styles.gridItem">
