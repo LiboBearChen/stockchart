@@ -33,8 +33,8 @@ class StockChart extends React.Component {
   }
 
   render() {
-    let priceArr = makeNormalChart(this.props.dataArr, this.props.chartDays);
-    let diffArr = makeDiffChart(this.props.dataArr, this.props.chartDays);
+    let priceArr = makeNormalChart(this.props.dataArr, this.state.chartDays);
+    let diffArr = makeDiffChart(this.props.dataArr, this.state.chartDays);
     let chosenStock = this.props.selectedSymbolKey;
     let chartChoice=this.props.chartChoice;
     let line1=<LineSeries data={priceArr[chosenStock]} style={{ stroke: 'green', strokeWidth: 3 }} />;

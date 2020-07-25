@@ -54,7 +54,7 @@ class PredictChart extends React.Component {
 
       let maxChartDays=perArr[0].length;
       console.log(maxChartDays);
-      this.setState({chartDays:maxChartDays});
+      // this.setState({chartDays:maxChartDays});
 
       let priceArr = makePredictChart(perArr, nowPrice, this.state.chartDays);
       line0 = <LineSeries data={priceArr[0]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
