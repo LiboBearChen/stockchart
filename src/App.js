@@ -8,8 +8,6 @@ import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
 import { makeRelevanceArr } from './components/DataAnalyseTools';
-import { arrayCutter ,makeRecentArr, makeExpandArr} from './components/PredictAnalyseTools';
-import { InputSymbol, InputDays } from './components/TextIput';
 import styles from './App.module.css';
 
 
@@ -18,7 +16,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stockSymbolArr: ["AAPL", "FB", "MSFT", "NFLX", "000825"],
+      stockSymbolArr: ["AAPL", "FB", "MSFT", "NFLX", "GOOGL"],
       dataArr: [],
       ranking: 0,
       selectedSymbolKey: 0,
@@ -41,7 +39,6 @@ export default class App extends Component {
 
   async componentDidMount() {
     await this.getAllData();
-
   }
 
   handleSymbolChange = (key) => {
@@ -74,7 +71,7 @@ export default class App extends Component {
           </div>
           <div className="styles.gridItem">
             <AnalysePicker handleChartChoiceChange={this.handleChartChoiceChange} />
-            <InputSymbol/>
+            {/* <InputSymbol/> */}
           </div>
         </div>
         <div className="styles.gridItem">

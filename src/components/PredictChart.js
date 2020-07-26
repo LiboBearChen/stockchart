@@ -15,6 +15,10 @@ class PredictChart extends React.Component {
     };
   }
 
+/*   async componentDidMount() {
+    this.setState({ chartDays: maxChartDays });
+  }
+ */
   handleDaysChange = (key) => {
     this.setState({ chartDays: key });
   }
@@ -47,14 +51,10 @@ class PredictChart extends React.Component {
       console.log(perArr);
 
       let nowPrice=this.props.dataArr[4][1][this.props.dataArr[4][0].length-1];
-      console.log(nowPrice);
-      console.log(this.props.dataArr);
-      console.log(this.props.dataArr[4][0].length-1);
 
 
       let maxChartDays=perArr[0].length;
-      console.log(maxChartDays);
-      // this.setState({chartDays:maxChartDays});
+;
 
       let priceArr = makePredictChart(perArr, nowPrice, this.state.chartDays);
       line0 = <LineSeries data={priceArr[0]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
@@ -66,7 +66,7 @@ class PredictChart extends React.Component {
 
     return (
       <div>
-        <h1 style={{ textAlign: 'center' }}>Predicted Price Chart</h1>
+        <h1 style={{ textAlign: 'center' }}>Stock Price Forecast Chart (4 Most Possible Trends)</h1>
         <XYPlot
           width={1000}
           height={500}>
@@ -79,6 +79,7 @@ class PredictChart extends React.Component {
           <XAxis title="Day" />
           <YAxis title="Price" style={{ fill: 'red' }} />
         </XYPlot>
+        <p>Chart Days: </p>
         <InputDays handleDaysChange={this.handleDaysChange}/>
       </div>
     )

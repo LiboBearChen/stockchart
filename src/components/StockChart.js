@@ -9,7 +9,7 @@ class StockChart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chartDays: 500
+      chartDays: 100
     };
   }
 
@@ -56,6 +56,7 @@ class StockChart extends React.Component {
           <XAxis title="Day" />
           <YAxis title="Price" style={{ fill: 'red' }} />
         </XYPlot>
+        <p>Chart Days: </p>
         <InputDays handleDaysChange={this.handleDaysChange}/>
       </div>
     )
