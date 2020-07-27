@@ -21,7 +21,7 @@ export default class App extends Component {
       ranking: 0,
       selectedSymbolKey: 0,
       chartChoice: 0,
-      chartDays: 500
+      chartDays: 100
     };
   }
 
@@ -63,13 +63,14 @@ export default class App extends Component {
     return (
       <div className={styles.gridContainer}>
         <div className="styles.gridItem">
-          <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} chartChoice={this.state.chartChoice} />
+          <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey}  chartChoice={this.state.chartChoice} />
         </div>
         <div className="styles.gridItem">
           <div className="styles.gridItem">
             <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
           </div>
           <div className="styles.gridItem">
+            <p></p>
             <AnalysePicker handleChartChoiceChange={this.handleChartChoiceChange} />
             {/* <InputSymbol/> */}
           </div>
@@ -82,7 +83,7 @@ export default class App extends Component {
           <AnalyseTable relevanceArr={tableData} stockSymbolArr={this.state.stockSymbolArr} />
         </div>
         <div>
-        <PredictChart dataArr={this.state.dataArr} />
+        <PredictChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} />
         </div>
       </div>
     );

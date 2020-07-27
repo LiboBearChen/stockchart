@@ -1,36 +1,20 @@
 import React from 'react';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
 import 'react-vis/dist/style.css';
-import { makePercenChart, makeRelevanceArr } from './DataAnalyseTools';
+import { makeRelevanceArr } from './DataAnalyseTools';
 import { arrayCutter, makeRecentArr, makeExpandArr, makeLastDateArr , makePredictDataSourceArr, findMinDays, makePredictChart, makePredictPercentArr} from './PredictAnalyseTools';
-import {InputDays } from './TextIput';
 
 
 class PredictChart extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      chartDays: 10
-    };
-  }
-
-/*   async componentDidMount() {
-    this.setState({ chartDays: maxChartDays });
-  }
- */
-  handleDaysChange = (key) => {
-    this.setState({ chartDays: key });
-  }
-
   render() {
 
     let line0, line1, line2, line3;
-
+    let chosenStock = this.props.selectedSymbolKey;
     if (this.props.dataArr.length>0) {
 
       //first analyse 10 days data
-      let cutArr = arrayCutter(this.props.dataArr[4], 10);
+      let cutArr = arrayCutter(this.props.dataArr[chosenStock], 10);
       let relevanceArr = makeRelevanceArr(cutArr[0], 10);
       let recentArr = makeRecentArr(relevanceArr);
 
@@ -41,7 +25,7 @@ class PredictChart extends React.Component {
 
       let lastDateArr=makeLastDateArr(recentArrNew,expandArr);
 
-      let predictDataSourceArr=makePredictDataSourceArr(this.props.dataArr[4], lastDateArr); 
+      let predictDataSourceArr=makePredictDataSourceArr(this.props.dataArr[chosenStock], lastDateArr); 
       console.log(predictDataSourceArr);
 
       let minDays=findMinDays(predictDataSourceArr);
@@ -50,13 +34,13 @@ class PredictChart extends React.Component {
       let perArr=makePredictPercentArr(predictDataSourceArr, minDays);
       console.log(perArr);
 
-      let nowPrice=this.props.dataArr[4][1][this.props.dataArr[4][0].length-1];
+      let nowPrice=this.props.dataArr[chosenStock][1][this.props.dataArr[chosenStock][0].length-1];
 
 
       let maxChartDays=perArr[0].length;
 ;
 
-      let priceArr = makePredictChart(perArr, nowPrice, this.state.chartDays);
+      let priceArr = makePredictChart(perArr, nowPrice, maxChartDays);
       line0 = <LineSeries data={priceArr[0]} style={{ stroke: '#000000', strokeWidth: 3 }} />;
       line1 = <LineSeries data={priceArr[1]} style={{ stroke: '#666666', strokeWidth: 3 }} />;
       line2 = <LineSeries data={priceArr[2]} style={{ stroke: '#737373', strokeWidth: 3 }} />;
@@ -66,7 +50,7 @@ class PredictChart extends React.Component {
 
     return (
       <div>
-        <h1 style={{ textAlign: 'center' }}>Stock Price Forecast Chart (4 Most Possible Trends)</h1>
+        <h1 style={{ textAlign: 'center' }}>Stock Price Forecast Chart (4 Most Possible Trends Satrting From The Next Trading Day)</h1>
         <XYPlot
           width={1000}
           height={500}>
@@ -79,8 +63,6 @@ class PredictChart extends React.Component {
           <XAxis title="Day" />
           <YAxis title="Price" style={{ fill: 'red' }} />
         </XYPlot>
-        <p>Chart Days: </p>
-        <InputDays handleDaysChange={this.handleDaysChange}/>
       </div>
     )
   }
