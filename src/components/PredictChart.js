@@ -50,7 +50,7 @@ class PredictChart extends React.Component {
 
     return (
       <div>
-        <h1 style={{ textAlign: 'center' }}>Stock Price Forecast Chart (4 Most Possible Trends Satrting From The Next Trading Day)</h1>
+        <h1 style={{ textAlign: 'center' }}>Forecast Chart (4 Most Possible Trends Satrting From The Next Trading Day)</h1>
         <XYPlot
           width={1000}
           height={500}>

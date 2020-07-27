@@ -8,6 +8,7 @@ import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
 import { makeRelevanceArr } from './components/DataAnalyseTools';
+import {InputDays } from './components/TextIput';
 import styles from './App.module.css';
 
 
@@ -59,21 +60,27 @@ export default class App extends Component {
 
   render() {
     let tableData = makeRelevanceArr(this.state.dataArr, this.state.chartDays);
-    
+
     return (
       <div className={styles.gridContainer}>
         <div className="styles.gridItem">
-          <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey}  chartChoice={this.state.chartChoice} />
+          <StockChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartChoice={this.state.chartChoice} chartDays={this.state.chartDays} />
         </div>
         <div className="styles.gridItem">
-          <div className="styles.gridItem">
-            <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
-          </div>
-          <div className="styles.gridItem">
-            <p></p>
+          <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
+          <div>
             <AnalysePicker handleChartChoiceChange={this.handleChartChoiceChange} />
-            {/* <InputSymbol/> */}
           </div>
+          <div>
+            <h3>Chart Days: </h3>
+            <InputDays handleDaysChange={this.handleDaysChange} />
+          </div>
+        </div>
+        <div className="styles.gridItem">
+          <PredictChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} />
+        </div>
+        <div className="styles.gridItem">
+
         </div>
         <div className="styles.gridItem">
           <AnalyseChart ranking={this.state.ranking} dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} chartDays={this.state.chartDays} />
@@ -81,9 +88,6 @@ export default class App extends Component {
         <div className="styles.gridItem">
           <RankingPicker rankingArr={tableData} handleRangkingChange={this.handleRangkingChange} stockSymbolArr={this.state.stockSymbolArr} />
           <AnalyseTable relevanceArr={tableData} stockSymbolArr={this.state.stockSymbolArr} />
-        </div>
-        <div>
-        <PredictChart dataArr={this.state.dataArr} selectedSymbolKey={this.state.selectedSymbolKey} />
         </div>
       </div>
     );
