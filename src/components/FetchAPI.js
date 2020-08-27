@@ -29,7 +29,7 @@ export const fetchDailyData = async (stockSymbol,type) => {
                 let volume = data['Time Series (Daily)'][key]['5. volume'];
 
                 
-                close = parseFloatclose);
+                //close = parseFloatclose;
                 stockChartYValues.push(close);
             }
 
