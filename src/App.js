@@ -9,7 +9,7 @@ import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
 import { makeRelevanceArr } from './components/DataAnalyseTools';
 import {InputDays } from './components/TextIput';
-import styles from './App.module.css';
+import styles from './App.module.css';TextInput
 
 
 export default class App extends Component {
@@ -68,6 +68,7 @@ export default class App extends Component {
         </div>
         <div className="styles.gridItem">
           <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
+          <TextInput/>
           <div>
             <AnalysePicker handleChartChoiceChange={this.handleChartChoiceChange} />
           </div>
