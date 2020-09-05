@@ -8,8 +8,8 @@ import AnalysePicker from "./components/AnalysePicker";
 import AnalyseChart from "./components/AnalyseChart";
 import AnalyseTable from "./components/AnalyseTable/AnalyseTable";
 import { makeRelevanceArr } from './components/DataAnalyseTools';
-import {InputDays } from './components/TextIput';
-import styles from './App.module.css';TextInput
+import {InputDays , InputSymbol} from './components/TextIput';
+import styles from './App.module.css';
 
 
 export default class App extends Component {
@@ -68,7 +68,8 @@ export default class App extends Component {
         </div>
         <div className="styles.gridItem">
           <SymbolPicker stockSymbolArr={this.state.stockSymbolArr} handleSymbolChange={this.handleSymbolChange} />
-          <TextInput/>
+          <h3>Stock Symbol: </h3>
+          <InputSymbol/>
           <div>
             <AnalysePicker handleChartChoiceChange={this.handleChartChoiceChange} />
           </div>
