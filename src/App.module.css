@@ -1,16 +1,16 @@
 body {
-    background-image: url("images/1.png");
-    background-repeat: repeat;
+  background-image: url("images/1.png");
+  background-repeat: repeat;
 }
 
 .gridContainer {
-    display: grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
 }
 
 .gridItem {
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  text-align: center;
 }
